@@ -1,0 +1,2 @@
+create share cifs name=share1 local_path=/FS1 oplock_enabled=yes ip_control_enabled=no
+create share cifs name=share1 local_path=/FS2 ip_control_enabled=yes
