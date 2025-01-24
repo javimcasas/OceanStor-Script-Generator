@@ -1,79 +1,147 @@
 import os
 import sys
 import pandas as pd
-from readData import readFile
+import json
+
+def load_config():
+    """Load the configuration from the JSON file."""
+    with open("commands_config.json", "r") as file:
+        return json.load(file)
+
+def read_file(file_path, sheet_name):
+    """
+    Reads an Excel sheet into a DataFrame.
+
+    :param file_path: Path to the Excel file.
+    :param sheet_name: Name of the sheet to read.
+    :return: DataFrame containing the sheet data.
+    """
+    try:
+        return pd.read_excel(file_path, sheet_name=sheet_name)
+    except Exception as e:
+        print(f"Error reading sheet '{sheet_name}' from file '{file_path}': {e}")
+        return None
+
+def generate_commands(data_frame, command_type):
+    """
+    Generates commands from a DataFrame based on the command type.
+
+    :param data_frame: DataFrame containing the data.
+    :param command_type: Type of command (e.g., 'Create', 'Change', 'Show').
+    :return: List of generated commands.
+    """
+    commands = []
+    for index, row in data_frame.iterrows():
+        try:
+            # Skip rows where mandatory fields are missing
+            if command_type == 'Create' and (pd.isna(row['name']) or row['name'] == '' or pd.isna(row['local_path']) or row['local_path'] == ''):
+                print(f"Warning: Missing mandatory data in row {index + 1} of sheet '{command_type}'. Skipping.")
+                continue
+            elif command_type == 'Change' and (pd.isna(row['share_id']) or row['share_id'] == '') and (pd.isna(row['share_name']) or row['share_name'] == ''):
+                print(f"Warning: Missing mandatory data in row {index + 1} of sheet '{command_type}'. Skipping.")
+                continue
+            elif command_type == 'Show' and (pd.isna(row['share_id']) or row['share_id'] == '') and (pd.isna(row['file_system_id']) or row['file_system_id'] == '') and (pd.isna(row['share_name']) or row['share_name'] == ''):
+                print(f"Warning: Missing mandatory data in row {index + 1} of sheet '{command_type}'. Skipping.")
+                continue
+
+            # Start building the command
+            if command_type == 'Create':
+                # Validate and format 'local_path'
+                local_path = row['local_path']
+                if not local_path.startswith('/'):
+                    local_path = '/' + local_path
+
+                command = f"{command_type.lower()} share cifs name={row['name']} local_path={local_path}"
+
+                # Add additional parameters
+                for param, value in row.items():
+                    if pd.isna(value) or value == '' or value is None or param in ['name', 'local_path']:
+                        continue  # Skip empty or mandatory fields
+                    command += f" {param}={value}"
+
+            elif command_type == 'Change':
+                # Mandatory fields: share_id or share_name
+                if not pd.isna(row['share_id']) and row['share_id'] != '':
+                    command = f"{command_type.lower()} share cifs share_id={row['share_id']}"
+                elif not pd.isna(row['share_name']) and row['share_name'] != '':
+                    command = f"{command_type.lower()} share cifs share_name={row['share_name']}"
+                else:
+                    continue  # Skip if both are missing
+
+                # Add additional parameters
+                for param, value in row.items():
+                    if pd.isna(value) or value == '' or value is None or param in ['share_id', 'share_name']:
+                        continue  # Skip empty or mandatory fields
+                    command += f" {param}={value}"
+
+            elif command_type == 'Show':
+                # Mandatory fields: share_id, file_system_id, or share_name
+                if not pd.isna(row['share_id']) and row['share_id'] != '':
+                    command = f"{command_type.lower()} share cifs share_id={row['share_id']}"
+                elif not pd.isna(row['file_system_id']) and row['file_system_id'] != '':
+                    command = f"{command_type.lower()} share cifs file_system_id={row['file_system_id']}"
+                elif not pd.isna(row['share_name']) and row['share_name'] != '':
+                    command = f"{command_type.lower()} share cifs share_name={row['share_name']}"
+                else:
+                    continue  # Skip if all are missing
+
+                # Add additional parameters
+                for param, value in row.items():
+                    if pd.isna(value) or value == '' or value is None or param in ['share_id', 'file_system_id', 'share_name']:
+                        continue  # Skip empty or mandatory fields
+                    command += f" {param}={value}"
+
+            commands.append(command)
+        except KeyError as e:
+            print(f"Warning: Missing column '{e}' in row {index + 1} of sheet '{command_type}'. Skipping.")
+            continue
+
+    return commands
 
 def main():
-    # Este es el lugar donde ejecutas tu código
-    print("Script CIFS/NFS ejecutado correctamente.")
+    # Define paths
+    base_path = sys._MEIPASS if getattr(sys, 'frozen', False) else os.path.abspath(".")
+    cifs_file_path = os.path.join(base_path, 'Documents', 'CIFS_commands.xlsx')
+    results_dir = os.path.join(base_path, 'Results')
 
-    # Define the 'Results' folder path
-    results_dir = 'Results'
-
-    # Use sys._MEIPASS to get the correct path if running in a packaged executable
-    if getattr(sys, 'frozen', False):  # Check if we are in a PyInstaller bundle
-        base_path = sys._MEIPASS  # Use the temporary folder created by PyInstaller
-    else:
-        base_path = os.path.abspath(".")  # Use the current working directory
-
-    # Ahora se accede correctamente a los archivos dentro de los subdirectorios
-    cifs_file_path = os.path.join(base_path, 'Documents', 'CifsShares.xlsx')
-    data_file = readFile(cifs_file_path)
-
-    # Ensure the data_file is a DataFrame
-    if data_file is None:
-        sys.exit("Execution Stopped: Error reading data_file")
-
-    # If readFile returns a list, convert it to a DataFrame
-    if isinstance(data_file, list):
-        data_file = pd.DataFrame(data_file, columns=[ 
-            'name', 'local_path', 'continue_available_enabled', 'oplock_enabled', 'notify_enabled', 
-            'file_system_id', 'file_system_name', 'offline_file_mode', 'smb2_ca_enable', 'ip_control_enabled',
-            'abe_enabled', 'audit_items', 'file_filter_enable', 'apply_default_acl', 'share_type',
-            'show_previous_versions_enabled', 'show_snapshot_enabled', 'browse_enable', 'readdir_timeout',
-            'lease_enable', 'dir_umask', 'file_umask'
-        ])
-
-    # Check if the 'Results' folder exists, if not, create it
+    # Ensure the 'Results' folder exists
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
 
-    # Full path of the results file
-    file_path = os.path.join(results_dir, 'cifs_shares_commands.txt')
+    # Load JSON configuration
+    config = load_config()
+    cifs_columns = config.get('CIFS', {})
 
-    # Create and write to the results file
-    with open(file_path, 'w') as archive:
-        # Iterate through each row of data in the DataFrame
-        for index, row in data_file.iterrows():
-            # Check if the first two columns (share name and local path) have data
-            if pd.isna(row['name']) or row['name'] == '' or pd.isna(row['local_path']) or row['local_path'] == '':
-                print(f"Error: Missing mandatory data in row {index + 1}. 'name' or 'local_path' is empty.")
-                sys.exit("Execution Stopped: Missing mandatory data.")
+    # Check if the Excel file exists
+    if not os.path.exists(cifs_file_path):
+        print(f"Error: Excel file '{cifs_file_path}' does not exist.")
+        sys.exit(1)
 
-            # Validate if 'local_path' starts with '/' and add it if missing
-            local_path = row['local_path']
-            if not local_path.startswith('/'):
-                local_path = '/' + local_path  # Add '/' at the beginning if it's missing
+    # Generate commands for each sheet
+    all_commands = []
+    for command_type in cifs_columns:
+        # Read the sheet
+        data_frame = read_file(cifs_file_path, sheet_name=command_type)
+        if data_frame is None:
+            continue
 
-            # Start building the base command with the first two columns (mandatory)
-            command = f"create share cifs name={row['name']} local_path={local_path}"
+        # Generate commands for the sheet
+        commands = generate_commands(data_frame, command_type)
+        all_commands.extend(commands)
 
-            # Iterate over each column (from 2 onward) and add to command if it's not empty or NaN
-            for param, value in row.items():
-                if pd.isna(value) or value == '' or value is None:
-                    continue  # Skip if the value is NaN or empty
+        # Add a line break after commands from each sheet
+        all_commands.append('')
 
-                # Skip the first two columns ('name' and 'local_path')
-                if param in ['name', 'local_path']:
-                    continue
+    # Write all commands to a single file (overwrite if it exists)
+    output_file_path = os.path.join(results_dir, 'cifs_shares_commands.txt')
+    with open(output_file_path, 'w') as file:
+        for command in all_commands:
+            file.write(command + '\n')
 
-                # Add the parameter to the command
-                command += f" {param}={value}"
+    print(f"Commands written to: {output_file_path}")
 
-            # Write the command to the file
-            archive.write(command + '\n')
-
-    print(f"Commands written to: {file_path}")
+    # Return the output file path for the GUI to handle
+    return output_file_path
 
 if __name__ == "__main__":
     main()

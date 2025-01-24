@@ -1,0 +1,81 @@
+{
+    "CIFS": {
+        "Create": [
+            "name", 
+            "local_path", 
+            "continue_available_enabled", 
+            "oplock_enabled", 
+            "nofiy_enabled", 
+            "file_system_id", 
+            "file_system_name", 
+            "offline_file_mode", 
+            "smb2_ca_enable", 
+            "ip_control_enabled", 
+            "abe_enabled", 
+            "audit_items", 
+            "file_filter_enable", 
+            "apply_default_acl", 
+            "share_type", 
+            "show_previous_versions_enabled", 
+            "show_snapshot_enabled", 
+            "browse_enable", 
+            "readdir_timeout", 
+            "lease_enable", 
+            "dir_unmask", 
+            "file_unmask"
+        ],
+        "Change": [
+            "share_id", 
+            "share_name", 
+            "oplock_enabled", 
+            "continue_available_enabled", 
+            "notify_enabled", 
+            "offline_file_mode", 
+            "smb2_ca_enabled", 
+            "ip_control_enabled", 
+            "abe_enabled", 
+            "audit_items", 
+            "file_filter_enable", 
+            "apply_default_acl", 
+            "show_previous_versions_enabled", 
+            "show_snapshot_enabled", 
+            "browse_enabled", 
+            "readdir_timeout", 
+            "lease_enabled", 
+            "dir_umask", 
+            "file_umask"
+        ],
+        "Show": [
+            "share_id", 
+            "file_system_id", 
+            "share_type", 
+            "share_name", 
+            "file_system_name", 
+            "share_id_list", 
+            "share_name_list"
+        ]
+    },
+    "NFS": {
+        "Create": [
+            "name", 
+            "local_path", 
+            "file_system_id", 
+            "file_system_name", 
+            "nfs_version", 
+            "share_type"
+        ],
+        "Modify": [
+            "name", 
+            "local_path", 
+            "new_local_path", 
+            "new_share_type", 
+            "new_permissions", 
+            "file_system_id"
+        ],
+        "Show": [
+            "name", 
+            "local_path", 
+            "file_system_id"
+        ]
+    }
+}

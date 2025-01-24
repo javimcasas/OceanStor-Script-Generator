@@ -1,40 +1,34 @@
 import os
 import pandas as pd
+import json
 
-def create_excel_if_not_exists(script_type, file_path):
+def load_config():
+    """Load the configuration from the JSON file."""
+    with open("commands_config.json", "r") as file:
+        return json.load(file)
+
+def create_excel_for_resource(resource_type, excel_path, output_folder):
     """
-    Checks if the given Excel file exists. If it doesn't, creates the file
-    with the appropriate columns for the selected script type.
-    
-    :param script_type: The type of script ('CIFS' or 'NFS').
-    :param file_path: The path to the Excel file.
+    Creates an Excel file for a specific resource type (e.g., CIFS or NFS) only if it doesn't exist.
+    Each sheet in the Excel file corresponds to a command type (Create, Modify, Show).
+
+    :param resource_type: The resource type (e.g., "CIFS" or "NFS").
+    :param excel_path: The full path to the Excel file.
+    :param output_folder: The folder where the Excel file will be saved.
     """
-    if not os.path.exists(file_path):
-        # Define the column names based on the script type
-        if script_type == 'CIFS':
-            columns = [
-                'name', 'local_path', 'continue_available_enabled', 'oplock_enabled', 
-                'nofiy_enabled', 'file_system_id', 'file_system_name', 'offline_file_mode', 
-                'smb2_ca_enable', 'ip_control_enabled', 'abe_enabled', 'audit_items', 
-                'file_filter_enable', 'apply_default_acl', 'share_type', 
-                'show_previous_versions_enabled', 'show_snapshot_enabled', 'browse_enable', 
-                'readdir_timeout', 'lease_enable', 'dir_unmask', 'file_unmask'
-            ]
-        elif script_type == 'NFS':
-            columns = [
-                'local_path', 'file_system_id', 'file_system_name', 'charset', 
-                'lock_type', 'alias', 'audit_items', 'show_snapshot_enabled', 
-                'description'
-            ]
-        else:
-            raise ValueError("Invalid script type")
+    if not os.path.exists(excel_path):
+        # Load configuration from the JSON file
+        config = load_config()
 
-        # Create a DataFrame with the specified columns and no data
-        df = pd.DataFrame(columns=columns)
+        # Create an ExcelWriter object to write multiple sheets
+        with pd.ExcelWriter(excel_path, engine="xlsxwriter") as writer:
+            # Create sheets for each command type (Create, Modify, Show)
+            for command_type in config[resource_type]:
+                # Create an empty DataFrame for each command
+                df = pd.DataFrame(columns=config[resource_type][command_type])
+                sheet_name = command_type  # Use the command type as the sheet name
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
 
-        # Save the DataFrame to an Excel file
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)  # Ensure the directory exists
-        df.to_excel(file_path, index=False)
-        print(f"Excel file created: {file_path}")
+        print(f"Excel file created for {resource_type}: {excel_path}")
     else:
-        print(f"Excel file already exists: {file_path}")
+        print(f"Excel file already exists: {excel_path}")
