@@ -1,81 +1,725 @@
 {
     "CIFS": {
-        "Create": [
-            "name", 
-            "local_path", 
-            "continue_available_enabled", 
-            "oplock_enabled", 
-            "nofiy_enabled", 
-            "file_system_id", 
-            "file_system_name", 
-            "offline_file_mode", 
-            "smb2_ca_enable", 
-            "ip_control_enabled", 
-            "abe_enabled", 
-            "audit_items", 
-            "file_filter_enable", 
-            "apply_default_acl", 
-            "share_type", 
-            "show_previous_versions_enabled", 
-            "show_snapshot_enabled", 
-            "browse_enable", 
-            "readdir_timeout", 
-            "lease_enable", 
-            "dir_unmask", 
-            "file_unmask"
-        ],
-        "Change": [
-            "share_id", 
-            "share_name", 
-            "oplock_enabled", 
-            "continue_available_enabled", 
-            "notify_enabled", 
-            "offline_file_mode", 
-            "smb2_ca_enabled", 
-            "ip_control_enabled", 
-            "abe_enabled", 
-            "audit_items", 
-            "file_filter_enable", 
-            "apply_default_acl", 
-            "show_previous_versions_enabled", 
-            "show_snapshot_enabled", 
-            "browse_enabled", 
-            "readdir_timeout", 
-            "lease_enabled", 
-            "dir_umask", 
-            "file_umask"
-        ],
-        "Show": [
-            "share_id", 
-            "file_system_id", 
-            "share_type", 
-            "share_name", 
-            "file_system_name", 
-            "share_id_list", 
-            "share_name_list"
-        ]
+        "Create": {
+            "mandatory": [
+                {
+                    "name": "name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "local_path",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "oplock_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "notify_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "offline_file_mode",
+                    "field_type": "select",
+                    "allowed_values": ["none", "manual", "documents", "programs"],
+                    "default": "none"
+                },
+                {
+                    "name": "ip_control_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "audit_items",
+                    "field_type": "select",
+                    "allowed_values": ["all", "none", "open", "create", "read", "write", "close", "delete", "rename", "get_security", "set_security", "get_attr", "set_attr", "get_xattr", "set_xattr"],
+                    "default": "none"
+                },
+                {
+                    "name": "share_type",
+                    "field_type": "select",
+                    "allowed_values": ["normal", "homedir"],
+                    "default": "normal"
+                },
+                {
+                    "name": "file_filter_enable",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "abe_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "apply_default_acl",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "show_previous_versions_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "show_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "browse_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "lease_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "dir_umask",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_umask",
+                    "field_type": "text"
+                }
+            ]
+        },
+        "Change": {
+            "mandatory": [
+                {
+                    "name": "share_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_name",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "oplock_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "notify_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "offline_file_mode",
+                    "field_type": "select",
+                    "allowed_values": ["none", "manual", "documents", "programs"],
+                    "default": "none"
+                },
+                {
+                    "name": "ip_control_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "audit_items",
+                    "field_type": "select",
+                    "allowed_values": ["all", "none", "open", "create", "read", "write", "close", "delete", "rename", "get_security", "set_security", "get_attr", "set_attr", "get_xattr", "set_xattr"],
+                    "default": "none"
+                },
+                {
+                    "name": "share_type",
+                    "field_type": "select",
+                    "allowed_values": ["normal", "homedir"],
+                    "default": "normal"
+                },
+                {
+                    "name": "file_filter_enable",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "abe_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "apply_default_acl",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "show_previous_versions_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "show_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "browse_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "lease_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "dir_umask",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_umask",
+                    "field_type": "text"
+                }
+            ]
+        },
+        "Show": {
+            "mandatory": [],
+            "optional": [
+                {
+                    "name": "share_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_type",
+                    "field_type": "select",
+                    "allowed_values": ["normal", "homedir"],
+                    "default": "normal"
+                },
+                {
+                    "name": "share_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_id_list",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_name_list",
+                    "field_type": "text"
+                }
+            ]
+        }
     },
     "NFS": {
-        "Create": [
-            "name", 
-            "local_path", 
-            "file_system_id", 
-            "file_system_name", 
-            "nfs_version", 
-            "share_type"
-        ],
-        "Modify": [
-            "name", 
-            "local_path", 
-            "new_local_path", 
-            "new_share_type", 
-            "new_permissions", 
-            "file_system_id"
-        ],
-        "Show": [
-            "name", 
-            "local_path", 
-            "file_system_id"
-        ]
+        "Create": {
+            "mandatory": [
+                {
+                    "name": "local_path",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "file_system_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "charset",
+                    "field_type": "select",
+                    "allowed_values": ["UTF-8", "JIS", "S-JIS", "EUC-JP", "DE", "ZH", "GBK", "EUC-TW", "BIG5", "PT", "FR", "IT", "ES", "KO"],
+                    "default": "UTF-8"
+                },
+                {
+                    "name": "lock_type",
+                    "field_type": "select",
+                    "allowed_values": ["Mandatory", "Advisory"],
+                    "default": "Mandatory"
+                },
+                {
+                    "name": "alias",
+                    "field_type": "text"
+                },
+                {
+                    "name": "audit_items",
+                    "field_type": "select",
+                    "allowed_values": ["none", "all", "open", "create", "read", "write", "close", "delete", "rename", "get_attr", "set_attr", "get_security", "set_security"],
+                    "default": "none"
+                },
+                {
+                    "name": "show_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "description",
+                    "field_type": "text"
+                }
+            ]
+        },
+        "Change": {
+            "mandatory": [
+                {
+                    "name": "share_id",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "charset",
+                    "field_type": "select",
+                    "allowed_values": ["UTF-8", "JIS", "S-JIS", "EUC-JP", "DE", "ZH", "GBK", "EUC-TW", "BIG5", "PT", "FR", "IT", "ES", "KO"],
+                    "default": "UTF-8"
+                },
+                {
+                    "name": "lock_type",
+                    "field_type": "select",
+                    "allowed_values": ["Mandatory", "Advisory"],
+                    "default": "Mandatory"
+                },
+                {
+                    "name": "audit_items",
+                    "field_type": "select",
+                    "allowed_values": ["none", "all", "open", "create", "read", "write", "close", "delete", "rename", "get_attr", "set_attr", "get_security", "set_security"],
+                    "default": "none"
+                },
+                {
+                    "name": "show_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "share_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "description",
+                    "field_type": "text"
+                }
+            ]
+        },
+        "Show": {
+            "mandatory": [],
+            "optional": [
+                {
+                    "name": "share_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_id_list",
+                    "field_type": "text"
+                },
+                {
+                    "name": "share_name_list",
+                    "field_type": "text"
+                }
+            ]
+        }
+    },
+    "FileSystem": {
+        "Create": {
+            "mandatory": [
+                {
+                    "name": "name",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "workload_type_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "pool_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "pool_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "initial_distribute_policy",
+                    "field_type": "select",
+                    "allowed_values": ["automatic", "extreme_performance", "performance", "capacity"],
+                    "default": "automatic"
+                },
+                {
+                    "name": "capacity",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "alloc_type",
+                    "field_type": "select",
+                    "allowed_values": ["thick", "thin"],
+                    "default": "thin"
+                },
+                {
+                    "name": "number",
+                    "field_type": "text"
+                },
+                {
+                    "name": "owner_controller",
+                    "field_type": "text"
+                },
+                {
+                    "name": "io_priority",
+                    "field_type": "select",
+                    "allowed_values": ["Low", "Middle", "High"],
+                    "default": "Low"
+                },
+                {
+                    "name": "compression_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "compression_method",
+                    "field_type": "select",
+                    "allowed_values": ["fast", "deep"],
+                    "default": "fast"
+                },
+                {
+                    "name": "dedup_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "bytecomparison_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "sub_type",
+                    "field_type": "select",
+                    "allowed_values": ["normal", "worm"],
+                    "default": "normal"
+                },
+                {
+                    "name": "worm_type",
+                    "field_type": "select",
+                    "allowed_values": ["compliance", "enterprise"]
+                },
+                {
+                    "name": "min_protect_period",
+                    "field_type": "text"
+                },
+                {
+                    "name": "min_protect_period_unit",
+                    "field_type": "select",
+                    "allowed_values": ["year", "month", "day"],
+                    "default": "year"
+                },
+                {
+                    "name": "max_protect_period",
+                    "field_type": "text"
+                },
+                {
+                    "name": "max_protect_period_unit",
+                    "field_type": "select",
+                    "allowed_values": ["year", "month", "day"],
+                    "default": "year"
+                },
+                {
+                    "name": "default_protect_period",
+                    "field_type": "text"
+                },
+                {
+                    "name": "default_protect_period_unit",
+                    "field_type": "select",
+                    "allowed_values": ["year", "month", "day"],
+                    "default": "year"
+                },
+                {
+                    "name": "auto_lock_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "auto_lock_time",
+                    "field_type": "text"
+                },
+                {
+                    "name": "auto_lock_time_unit",
+                    "field_type": "select",
+                    "allowed_values": ["hour", "day"],
+                    "default": "hour"
+                },
+                {
+                    "name": "auto_delete_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "checksum_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "atime_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "atime_update_mode",
+                    "field_type": "select",
+                    "allowed_values": ["off", "hourly", "daily"],
+                    "default": "off"
+                },
+                {
+                    "name": "show_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "auto_delete_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "timing_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "block_size",
+                    "field_type": "select",
+                    "allowed_values": ["4 KB", "8 KB", "16 KB", "32 KB", "64 KB"],
+                    "default": "16 KB"
+                },
+                {
+                    "name": "capacity_threshold",
+                    "field_type": "text"
+                },
+                {
+                    "name": "snapshot_reserve",
+                    "field_type": "text"
+                },
+                {
+                    "name": "timing_snapshot_max_number",
+                    "field_type": "text"
+                },
+                {
+                    "name": "smart_cache_state",
+                    "field_type": "select",
+                    "allowed_values": ["on", "off"],
+                    "default": "off"
+                },
+                {
+                    "name": "intelligent_dedup_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "dedup_metadata_sample_ratio",
+                    "field_type": "select",
+                    "allowed_values": ["1", "2", "4", "8", "16", "32"],
+                    "default": "1"
+                },
+                {
+                    "name": "application_scenario",
+                    "field_type": "select",
+                    "allowed_values": ["database", "virtual_machine"]
+                },
+                {
+                    "name": "space_self_adjusting_mode",
+                    "field_type": "select",
+                    "allowed_values": ["off", "grow", "grow_shrink"],
+                    "default": "off"
+                },
+                {
+                    "name": "autosize_enable",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "auto_shrink_threshold_percent",
+                    "field_type": "text"
+                },
+                {
+                    "name": "auto_grow_threshold_percent",
+                    "field_type": "text"
+                },
+                {
+                    "name": "min_autosize",
+                    "field_type": "text"
+                },
+                {
+                    "name": "autosize_increment",
+                    "field_type": "text"
+                },
+                {
+                    "name": "max_autosize",
+                    "field_type": "text"
+                },
+                {
+                    "name": "space_recycle_mode",
+                    "field_type": "select",
+                    "allowed_values": ["autosize_first", "delete_snap_first"],
+                    "default": "autosize_first"
+                },
+                {
+                    "name": "ssd_capacity_upper_limit_of_user_data",
+                    "field_type": "text"
+                },
+                {
+                    "name": "description",
+                    "field_type": "text"
+                },
+                {
+                    "name": "alternate_data_streams_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "long_filename_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "security_style",
+                    "field_type": "select",
+                    "allowed_values": ["NTFS", "UNIX"],
+                    "default": "NTFS"
+                },
+                {
+                    "name": "unix_permissions",
+                    "field_type": "text"
+                },
+                {
+                    "name": "fs_layer_distribution_algorithm",
+                    "field_type": "select",
+                    "allowed_values": ["Performance Mode", "Capacity Balance Mode", "Directory Balance Mode", "Directory Shuffle Mode"],
+                    "default": "Performance Mode"
+                }
+            ]
+        },
+        "Show": {
+            "mandatory": [],
+            "optional": [
+                {
+                    "name": "file_system_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "filter_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "filter_storage_pool_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "filter_health_status",
+                    "field_type": "text"
+                },
+                {
+                    "name": "filter_running_status",
+                    "field_type": "text"
+                },
+                {
+                    "name": "offset",
+                    "field_type": "text"
+                },
+                {
+                    "name": "limit",
+                    "field_type": "text"
+                },
+                {
+                    "name": "sort_by",
+                    "field_type": "select",
+                    "allowed_values": ["Name", "healthStatus", "runningStatus", "capacity"]
+                },
+                {
+                    "name": "sort_mode",
+                    "field_type": "select",
+                    "allowed_values": ["Ascending", "Descending"]
+                },
+                {
+                    "name": "file_system_id_list",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_name_list",
+                    "field_type": "text"
+                },
+                {
+                    "name": "vstore_id",
+                    "field_type": "text"
+                }
+            ]
+        }
     }
 }

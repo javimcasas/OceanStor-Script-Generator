@@ -1,0 +1,5 @@
+create file_system general name=fs1 workload_type_id=1 pool_id=sp1 pool_name=sp1
+create file_system general name=fs2 workload_type_id=2 pool_id=sp2
+
+show file_system general
+

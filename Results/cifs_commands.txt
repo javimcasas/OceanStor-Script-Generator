@@ -1,0 +1,6 @@
+create share cifs name=share1 local_path=/path1 oplock_enabled=yes
+create share cifs name=share2 local_path=/path2
+
+
+show share cifs
+

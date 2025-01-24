@@ -1,1 +1,0 @@
-create share nfs local_path=/tcs lock_type=yes

@@ -1,7 +1,0 @@
-create share cifs name=share1 local_path=/path1 continue_available_enabled=yes file_system_id=no
-create share cifs name=share2 local_path=/path2 nofiy_enabled=yes ip_control_enabled=no
-
-change share cifs share_id=share1 offline_file_mode=yes
-
-show share cifs share_id=share2 share_type=no
-
