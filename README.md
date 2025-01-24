@@ -24,7 +24,7 @@ This Python application generates scripts for Huawei Storage Cabinets based on u
 ## Clone the Repository:
 
 ```bash
-git clone https://github.com/your-username/huawei-storage-script-generator.git
+git clone https://github.com/javimcasas/huawei-storage-script-generator.git
 cd huawei-storage-script-generator
 ```
 
