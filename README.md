@@ -1,6 +1,6 @@
 # Huawei Storage Script Generator
 
-This Python application generates scripts for Huawei Storage Cabinets based on user input provided via Excel files and a JSON configuration. The application dynamically adapts to changes in the JSON file, making it highly customizable and scalable.
+This Python application generates scripts for Huawei Storage Cabinets based on user input provided via Excel files and a JSON configuration. The application has been refactored to improve modularity, readability, and maintainability. It dynamically adapts to changes in the JSON file, making it highly customizable and scalable.
 
 ## Features
 
@@ -18,26 +18,26 @@ This Python application generates scripts for Huawei Storage Cabinets based on u
 
   ```bash
   pip install pandas openpyxl tkinter
+  ```
 
-# Running the Application
+### Running the Application
 
-## Clone the Repository:
+#### Clone the Repository:
 
 ```bash
 git clone https://github.com/javimcasas/huawei-storage-script-generator.git
 cd huawei-storage-script-generator
 ```
 
-# Application Guide
-
-## Launch the Application:
+#### Launch the Application:
 Run the `script_selector.py` script to start the application:
 
 ```bash
 python script_selector.py
 ```
 
-## Using the Application:
+## Using the Application
+
 1. Select a resource type (e.g., CIFS, NFS, FileSystem) from the dropdown menu.
 2. Choose a command type (e.g., Create, Change, Show).
 3. Click **Open Excel** to generate and open an Excel file for data input.
@@ -45,6 +45,7 @@ python script_selector.py
 5. Click **Run Script** to generate the commands. The output will be saved in the `Results` folder.
 
 ## JSON Configuration
+
 The application dynamically adapts to changes in the `commands_config.json` file. This file defines:
 
 - The available resource types (e.g., CIFS, NFS, FileSystem).
@@ -52,6 +53,7 @@ The application dynamically adapts to changes in the `commands_config.json` file
 - The mandatory and optional fields for each command.
 
 ### Example JSON structure:
+
 ```json
 {
     "CIFS": {
@@ -80,9 +82,11 @@ The application dynamically adapts to changes in the `commands_config.json` file
 ```
 
 ## Packaging the Application
+
 To create an executable (.exe) file, use the `exe_creator.py` script. This script packages the application and its dependencies into a single executable file.
 
 ### Install PyInstaller:
+
 ```bash
 pip install pyinstaller
 ```
@@ -97,6 +101,7 @@ python exe_creator.py
 The executable will be created in the `dist` folder.
 
 ## File Structure
+
 ```
 huawei-storage-script-generator/
 ├── script_selector.py          # Main application script
@@ -109,6 +114,7 @@ huawei-storage-script-generator/
 ```
 
 ## Contributing
+
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
@@ -118,16 +124,19 @@ Contributions are welcome! Please follow these steps:
 5. Open a pull request.
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Example Usage
 
 ### Launch the Application:
+
 ```bash
 python script_selector.py
 ```
 
 ### Generate Commands:
+
 1. Select a resource type (e.g., CIFS).
 2. Choose a command type (e.g., Create).
 3. Fill out the Excel file and click **Run Script**.
