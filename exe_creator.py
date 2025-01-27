@@ -11,6 +11,7 @@ def create_executable():
     # Additional files to include in the executable
     add_data = [
         "commands_config.json;.",  # Include the JSON configuration file
+        "help_links.json;.",       # Include the JSON help links file
         "command_generator.py;.",  # Include the command generation file
         "utils.py;.",              # Include utility functions
         "file_operations.py;.",    # Include file operations module

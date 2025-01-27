@@ -1,0 +1,7 @@
+__pycache__/
+build/
+dist/
+Documents/
+output/
+Results/
+tests/

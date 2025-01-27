@@ -1,7 +1,26 @@
 import os
 import sys
 import pandas as pd
+import re
 from utils import load_config, read_file, get_data_file_path
+
+def process_audit_items(audit_items_input):
+    """
+    Process the audit_items input to handle multiple formats:
+    - value1, value2, value3, ...
+    - value1,value2,value3
+    - value1 value2 value3
+    """
+    if pd.isna(audit_items_input) or audit_items_input == '':
+        return None
+
+    # Remove any leading/trailing whitespace
+    audit_items_input = audit_items_input.strip()
+    
+    # Replace spaces and commas with a single comma
+    processed_value = re.sub(r"[\s,]+", ",", audit_items_input)
+    
+    return processed_value
 
 def generate_commands(data_frame, resource_type, command_type, mandatory_fields):
     commands = []
@@ -32,13 +51,22 @@ def generate_commands(data_frame, resource_type, command_type, mandatory_fields)
                     value = row.get(field)
                     if field == 'local_path' and not str(value).startswith('/'):
                         command += f" {field}=/{str(value).lstrip('/')}"
+                    elif field == 'audit_items':
+                        processed_value = process_audit_items(value)
+                        if processed_value:
+                            command += f" {field}={processed_value}"
                     else:
                         command += f" {field}={value}"
 
             for param, value in row.items():
                 if param in mandatory_fields or pd.isna(value) or value == '' or value is None:
                     continue
-                command += f" {param}={value}"
+                if param == 'audit_items':
+                    processed_value = process_audit_items(value)
+                    if processed_value:
+                        command += f" {param}={processed_value}"
+                else:
+                    command += f" {param}={value}"
 
             commands.append(command)
         except KeyError as e:

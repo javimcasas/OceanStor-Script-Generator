@@ -38,9 +38,7 @@
                 },
                 {
                     "name": "audit_items",
-                    "field_type": "select",
-                    "allowed_values": ["all", "none", "open", "create", "read", "write", "close", "delete", "rename", "get_security", "set_security", "get_attr", "set_attr", "get_xattr", "set_xattr"],
-                    "default": "none"
+                    "field_type": "text"
                 },
                 {
                     "name": "share_type",
@@ -142,9 +140,7 @@
                 },
                 {
                     "name": "audit_items",
-                    "field_type": "select",
-                    "allowed_values": ["all", "none", "open", "create", "read", "write", "close", "delete", "rename", "get_security", "set_security", "get_attr", "set_attr", "get_xattr", "set_xattr"],
-                    "default": "none"
+                    "field_type": "text"
                 },
                 {
                     "name": "share_type",
@@ -275,9 +271,7 @@
                 },
                 {
                     "name": "audit_items",
-                    "field_type": "select",
-                    "allowed_values": ["none", "all", "open", "create", "read", "write", "close", "delete", "rename", "get_attr", "set_attr", "get_security", "set_security"],
-                    "default": "none"
+                    "field_type": "text"
                 },
                 {
                     "name": "show_snapshot_enabled",
@@ -317,9 +311,7 @@
                 },
                 {
                     "name": "audit_items",
-                    "field_type": "select",
-                    "allowed_values": ["none", "all", "open", "create", "read", "write", "close", "delete", "rename", "get_attr", "set_attr", "get_security", "set_security"],
-                    "default": "none"
+                    "field_type": "text"
                 },
                 {
                     "name": "show_snapshot_enabled",
