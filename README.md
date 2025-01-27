@@ -1,6 +1,6 @@
 # Huawei Storage Script Generator
 
-This Python application generates scripts for Huawei Storage Cabinets based on user input provided via Excel files and a JSON configuration. The application has been refactored to improve modularity, readability, and maintainability. It dynamically adapts to changes in the JSON file, making it highly customizable and scalable.
+This Python application generates scripts for Huawei Storage Cabinets based on user input provided via Excel files and a JSON configuration. The application dynamically adapts to changes in the JSON file, making it highly customizable and scalable.
 
 ## Features
 
@@ -106,13 +106,14 @@ The executable will be created in the `dist` folder.
 huawei-storage-script-generator/
 ├── script_selector.py          # Main application script
 ├── command_generator.py        # Script to generate the commands
+├── gui_helpers.py              # Script to manage GUI style
 ├── file_operations.py          # Script to create and manage the xlsx files
+├── utils.py                    # Script to manage general functions
 ├── exe_creator.py              # Script to create an executable
 ├── commands_config.json        # JSON configuration file
 ├── Documents/                  # Folder for generated Excel files
 ├── Results/                    # Folder for generated script files
-├── README.md                   # Project documentation
-└── requirements.txt            # List of required Python packages
+└── README.md                   # Project documentation
 ```
 
 ## Contributing
