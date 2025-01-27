@@ -29,6 +29,8 @@ def generate_commands(data_frame, resource_type, command_type, mandatory_fields)
         if data_frame.empty:
             if resource_type == "FileSystem":
                 commands.append(f"{command_type.lower()} file_system general")
+            elif resource_type == "Quota":
+                commands.append(f"{command_type.lower()} quota general")
             else:
                 commands.append(f"{command_type.lower()} share {resource_type.lower()}")
             return commands
@@ -43,6 +45,15 @@ def generate_commands(data_frame, resource_type, command_type, mandatory_fields)
 
             if resource_type == "FileSystem":
                 command = f"{command_type.lower()} file_system general"
+            elif resource_type == "Quota":
+                if command_type == "FS Quota":
+                    command = "create quota file_system"
+                elif command_type == "Dtree Quota":
+                    command = "create quota dtree"
+                elif command_type == "Change":
+                    command = "change quota general"
+                elif command_type == "Show":
+                    command = "show quota general"
             else:
                 command = f"{command_type.lower()} share {resource_type.lower()}"
 
@@ -55,6 +66,14 @@ def generate_commands(data_frame, resource_type, command_type, mandatory_fields)
                         processed_value = process_audit_items(value)
                         if processed_value:
                             command += f" {field}={processed_value}"
+                    elif field == 'file_system_name' or field == 'file_system_id':
+                        command += f" {field}={value}"
+                    elif field == 'quota_type':
+                        command += f" {field}={value}"
+                    elif field == 'space_hard_quota' or field == 'space_soft_quota' or field == 'file_hard_quota' or field == 'file_soft_quota':
+                        command += f" {field}={value}"
+                    elif field == 'quota_id':
+                        command += f" {field}={value}"
                     else:
                         command += f" {field}={value}"
 
@@ -65,6 +84,10 @@ def generate_commands(data_frame, resource_type, command_type, mandatory_fields)
                     processed_value = process_audit_items(value)
                     if processed_value:
                         command += f" {param}={processed_value}"
+                elif param == 'user_group_type' or param == 'user_name' or param == 'group_name' or param == 'domain_type':
+                    command += f" {param}={value}"
+                elif param == 'space_hard_quota' or param == 'space_soft_quota' or param == 'file_hard_quota' or param == 'file_soft_quota':
+                    command += f" {param}={value}"
                 else:
                     command += f" {param}={value}"
 

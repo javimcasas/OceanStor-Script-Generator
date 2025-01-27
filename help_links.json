@@ -12,5 +12,11 @@
     "FileSystem": {
         "Create": "https://support.huawei.com/enterprise/en/doc/EDOC1100140602/59f6405a/create-file_system-general",
         "Show": "https://support.huawei.com/enterprise/en/doc/EDOC1100140602/5ecbf363/show-file_system-general"
+    },
+    "Quota": {
+        "File System Quota": "https://support.huawei.com/enterprise/en/doc/EDOC1100140602/71c50548/create-quota-file_system",
+        "Dtree Quota": "https://support.huawei.com/enterprise/en/doc/EDOC1100140602/609048c6/create-quota-dtree",
+        "Change": "https://support.huawei.com/enterprise/en/doc/EDOC1100140602/b515f684/change-quota-general",
+        "Show": "https://support.huawei.com/enterprise/en/doc/EDOC1100140602/90662844/show-quota-general"
     }
 }

@@ -713,5 +713,183 @@
                 }
             ]
         }
+    },
+    "Quota": {
+        "FS Quota": {
+            "mandatory": [
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "quota_type",
+                    "field_type": "select",
+                    "allowed_values": ["directory", "user", "group"],
+                    "default": "directory"
+                },
+                {
+                    "name": "space_hard_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "space_soft_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_hard_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_soft_quota",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "user_group_type",
+                    "field_type": "select",
+                    "allowed_values": ["local", "domain"],
+                    "default": "local"
+                },
+                {
+                    "name": "user_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "group_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "domain_type",
+                    "field_type": "select",
+                    "allowed_values": ["local", "ad", "ldap", "nis"],
+                    "default": "local"
+                },
+                {
+                    "name": "vstore_id",
+                    "field_type": "text",
+                    "default": "0"
+                }
+            ]
+        },
+        "Dtree Quota": {
+            "mandatory": [
+                {
+                    "name": "dtree_id",
+                    "field_type": "text",
+                    "description": "Dtree ID in the format 'File system ID@Dtree ID'. Use 'show dtree general' to obtain the value."
+                },
+                {
+                    "name": "quota_type",
+                    "field_type": "select",
+                    "allowed_values": ["directory", "user", "group"],
+                    "default": "directory"
+                },
+                {
+                    "name": "space_hard_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "space_soft_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_hard_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_soft_quota",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "user_name",
+                    "field_type": "text",
+                    "description": "User name. Use 'show unix_user general' or 'show windows_user general' to obtain the value."
+                },
+                {
+                    "name": "group_name",
+                    "field_type": "text",
+                    "description": "User group name. Use 'show unix_group general' to obtain the value."
+                },
+                {
+                    "name": "user_group_type",
+                    "field_type": "select",
+                    "allowed_values": ["local", "domain"],
+                    "default": "local"
+                },
+                {
+                    "name": "domain_type",
+                    "field_type": "select",
+                    "allowed_values": ["local", "ad", "ldap", "nis"],
+                    "default": "local"
+                },
+                {
+                    "name": "vstore_id",
+                    "field_type": "text",
+                    "default": "0"
+                }
+            ]
+        },
+        "Change": {
+            "mandatory": [
+                {
+                    "name": "quota_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "space_hard_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "space_soft_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_hard_quota",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_soft_quota",
+                    "field_type": "text"
+                }
+            ],
+            "optional": []
+        },
+        "Show": {
+            "mandatory": [],
+            "optional": [
+                {
+                    "name": "quota_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_system_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "dtree_id",
+                    "field_type": "text"
+                },
+                {
+                    "name": "dtree_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "quota_type",
+                    "field_type": "select",
+                    "allowed_values": ["directory", "user", "group"]
+                },
+                {
+                    "name": "vstore_id",
+                    "field_type": "text"
+                }
+            ]
+        }
     }
 }
