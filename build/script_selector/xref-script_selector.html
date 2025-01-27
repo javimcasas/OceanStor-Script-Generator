@@ -115,6 +115,7 @@ imports:
  &#8226;   <a href="#codecs">codecs</a>
  &#8226;   <a href="#collections">collections</a>
  &#8226;   <a href="#collections.abc">collections.abc</a>
+ &#8226;   <a href="#command_generator">command_generator</a>
  &#8226;   <a href="#copyreg">copyreg</a>
  &#8226;   <a href="#encodings">encodings</a>
  &#8226;   <a href="#encodings.aliases">encodings.aliases</a>
@@ -239,15 +240,17 @@ imports:
  &#8226;   <a href="#encodings.uu_codec">encodings.uu_codec</a>
  &#8226;   <a href="#encodings.zlib_codec">encodings.zlib_codec</a>
  &#8226;   <a href="#enum">enum</a>
- &#8226;   <a href="#excel_manager">excel_manager</a>
+ &#8226;   <a href="#file_operations">file_operations</a>
  &#8226;   <a href="#functools">functools</a>
  &#8226;   <a href="#genericpath">genericpath</a>
+ &#8226;   <a href="#gui_helpers">gui_helpers</a>
  &#8226;   <a href="#heapq">heapq</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#keyword">keyword</a>
  &#8226;   <a href="#linecache">linecache</a>
  &#8226;   <a href="#locale">locale</a>
  &#8226;   <a href="#ntpath">ntpath</a>
+ &#8226;   <a href="#openpyxl">openpyxl</a>
  &#8226;   <a href="#operator">operator</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#posixpath">posixpath</a>
@@ -266,14 +269,13 @@ imports:
  &#8226;   <a href="#sre_constants">sre_constants</a>
  &#8226;   <a href="#sre_parse">sre_parse</a>
  &#8226;   <a href="#stat">stat</a>
- &#8226;   <a href="#styled_gui">styled_gui</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#sys">sys</a>
  &#8226;   <a href="#tkinter">tkinter</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
- &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
  &#8226;   <a href="#traceback">traceback</a>
  &#8226;   <a href="#types">types</a>
+ &#8226;   <a href="#utils">utils</a>
  &#8226;   <a href="#warnings">warnings</a>
  &#8226;   <a href="#weakref">weakref</a>
 
@@ -581,7 +583,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>'org.python'</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#pickle">pickle</a>
+    <a href="#copy">copy</a>
  &#8226;   <a href="#xml.sax">xml.sax</a>
 
   </div>
@@ -3988,6 +3990,7 @@ imported by:
  &#8226;   <a href="#unittest.case">unittest.case</a>
  &#8226;   <a href="#unittest.util">unittest.util</a>
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
  &#8226;   <a href="#xml.etree.ElementTree">xml.etree.ElementTree</a>
  &#8226;   <a href="#yaml.representer">yaml.representer</a>
 
@@ -4168,6 +4171,25 @@ imported by:
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
     <a href="#pkg_resources._vendor.appdirs">pkg_resources._vendor.appdirs</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="command_generator"></a>
+  <a target="code" href="///C:/Users/j00914576/Desktop/Code/command_generator.py" type="text/plain"><tt>command_generator</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#os">os</a>
+ &#8226;   <a href="#pandas">pandas</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#utils">utils</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#script_selector.py">script_selector.py</a>
 
   </div>
 
@@ -4387,8 +4409,8 @@ imported by:
   <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/copy.py" type="text/plain"><tt>copy</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#copyreg">copyreg</a>
- &#8226;   <a href="#org">org</a>
+    <a href="#'org.python'">'org.python'</a>
+ &#8226;   <a href="#copyreg">copyreg</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#weakref">weakref</a>
 
@@ -4434,6 +4456,9 @@ imported by:
  &#8226;   <a href="#tarfile">tarfile</a>
  &#8226;   <a href="#weakref">weakref</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.contenttypes">xlsxwriter.contenttypes</a>
+ &#8226;   <a href="#xlsxwriter.shape">xlsxwriter.shape</a>
  &#8226;   <a href="#xml.dom.xmlbuilder">xml.dom.xmlbuilder</a>
  &#8226;   <a href="#xml.etree.ElementInclude">xml.etree.ElementInclude</a>
 
@@ -4667,6 +4692,10 @@ imported by:
  &#8226;   <a href="#pytz.tzfile">pytz.tzfile</a>
  &#8226;   <a href="#pytz.tzinfo">pytz.tzinfo</a>
  &#8226;   <a href="#sqlite3.dbapi2">sqlite3.dbapi2</a>
+ &#8226;   <a href="#xlsxwriter.core">xlsxwriter.core</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
  &#8226;   <a href="#xmlrpc.client">xmlrpc.client</a>
  &#8226;   <a href="#yaml.constructor">yaml.constructor</a>
  &#8226;   <a href="#yaml.representer">yaml.representer</a>
@@ -5083,6 +5112,8 @@ imported by:
  &#8226;   <a href="#pandas.core.dtypes.missing">pandas.core.dtypes.missing</a>
  &#8226;   <a href="#pandas.io.formats.format">pandas.io.formats.format</a>
  &#8226;   <a href="#statistics">statistics</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
  &#8226;   <a href="#xmlrpc.client">xmlrpc.client</a>
 
   </div>
@@ -8298,31 +8329,31 @@ imported by:
 </div>
 
 <div class="node">
-  <a name="excel_manager"></a>
-  <a target="code" href="///C:/Users/j00914576/Desktop/Code/excel_manager.py" type="text/plain"><tt>excel_manager</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#openpyxl">openpyxl</a>
- &#8226;   <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
- &#8226;   <a href="#openpyxl.worksheet.datavalidation">openpyxl.worksheet.datavalidation</a>
- &#8226;   <a href="#os">os</a>
- &#8226;   <a href="#pandas">pandas</a>
-
-  </div>
-  <div class="import">
+  <a name="fcntl"></a>
+  <a target="code" href="" type="text/plain"><tt>fcntl</tt></a>
+<span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#script_selector.py">script_selector.py</a>
+    <a href="#subprocess">subprocess</a>
 
   </div>
 
 </div>
 
 <div class="node">
-  <a name="fcntl"></a>
-  <a target="code" href="" type="text/plain"><tt>fcntl</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
+  <a name="file_operations"></a>
+  <a target="code" href="///C:/Users/j00914576/Desktop/Code/file_operations.py" type="text/plain"><tt>file_operations</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#openpyxl">openpyxl</a>
+ &#8226;   <a href="#openpyxl.utils">openpyxl.utils</a>
+ &#8226;   <a href="#openpyxl.worksheet.datavalidation">openpyxl.worksheet.datavalidation</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#utils">utils</a>
+
+  </div>
+  <div class="import">
 imported by:
-    <a href="#subprocess">subprocess</a>
+    <a href="#script_selector.py">script_selector.py</a>
 
   </div>
 
@@ -8394,6 +8425,8 @@ imports:
 imported by:
     <a href="#dateutil.rrule">dateutil.rrule</a>
  &#8226;   <a href="#statistics">statistics</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
 
   </div>
 
@@ -8512,7 +8545,6 @@ imported by:
  &#8226;   <a href="#numpy.polynomial.polyutils">numpy.polynomial.polyutils</a>
  &#8226;   <a href="#numpy.testing._private.utils">numpy.testing._private.utils</a>
  &#8226;   <a href="#openpyxl.compat">openpyxl.compat</a>
- &#8226;   <a href="#openpyxl.compat.product">openpyxl.compat.product</a>
  &#8226;   <a href="#openpyxl.utils.cell">openpyxl.utils.cell</a>
  &#8226;   <a href="#openpyxl.xml.functions">openpyxl.xml.functions</a>
  &#8226;   <a href="#operator">operator</a>
@@ -8596,6 +8628,7 @@ imported by:
  &#8226;   <a href="#unittest.result">unittest.result</a>
  &#8226;   <a href="#unittest.signals">unittest.signals</a>
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
 
   </div>
 
@@ -8760,6 +8793,24 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="gui_helpers"></a>
+  <a target="code" href="///C:/Users/j00914576/Desktop/Code/gui_helpers.py" type="text/plain"><tt>gui_helpers</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#tkinter">tkinter</a>
+ &#8226;   <a href="#tkinter.font">tkinter.font</a>
+ &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#script_selector.py">script_selector.py</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="gzip"></a>
   <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/gzip.py" type="text/plain"><tt>gzip</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -8816,6 +8867,7 @@ imported by:
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#uuid">uuid</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
 
   </div>
 
@@ -9747,6 +9799,10 @@ imported by:
  &#8226;   <a href="#unittest.result">unittest.result</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#uuid">uuid</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.theme">xlsxwriter.theme</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
  &#8226;   <a href="#xml.dom.minidom">xml.dom.minidom</a>
  &#8226;   <a href="#xml.dom.pulldom">xml.dom.pulldom</a>
  &#8226;   <a href="#xml.etree.ElementTree">xml.etree.ElementTree</a>
@@ -9796,7 +9852,6 @@ imported by:
  &#8226;   <a href="#numpy.ma.extras">numpy.ma.extras</a>
  &#8226;   <a href="#openpyxl.chart.reference">openpyxl.chart.reference</a>
  &#8226;   <a href="#openpyxl.utils.cell">openpyxl.utils.cell</a>
- &#8226;   <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
  &#8226;   <a href="#openpyxl.worksheet.cell_range">openpyxl.worksheet.cell_range</a>
  &#8226;   <a href="#openpyxl.worksheet.datavalidation">openpyxl.worksheet.datavalidation</a>
  &#8226;   <a href="#openpyxl.worksheet.worksheet">openpyxl.worksheet.worksheet</a>
@@ -9838,6 +9893,7 @@ imported by:
  &#8226;   <a href="#six">six</a>
  &#8226;   <a href="#statistics">statistics</a>
  &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#tkinter.font">tkinter.font</a>
  &#8226;   <a href="#tokenize">tokenize</a>
  &#8226;   <a href="#traceback">traceback</a>
  &#8226;   <a href="#weakref">weakref</a>
@@ -10554,6 +10610,7 @@ imported by:
  &#8226;   <a href="#pandas.io.excel._xlsxwriter">pandas.io.excel._xlsxwriter</a>
  &#8226;   <a href="#pandas.io.parquet">pandas.io.parquet</a>
  &#8226;   <a href="#pandas.util._print_versions">pandas.util._print_versions</a>
+ &#8226;   <a href="#utils">utils</a>
 
   </div>
 
@@ -10869,7 +10926,6 @@ imported by:
  &#8226;   <a href="#numpy.f2py.symbolic">numpy.f2py.symbolic</a>
  &#8226;   <a href="#numpy.lib">numpy.lib</a>
  &#8226;   <a href="#numpy.lib._index_tricks_impl">numpy.lib._index_tricks_impl</a>
- &#8226;   <a href="#openpyxl.compat.product">openpyxl.compat.product</a>
  &#8226;   <a href="#openpyxl.compat.strings">openpyxl.compat.strings</a>
  &#8226;   <a href="#openpyxl.drawing.drawing">openpyxl.drawing.drawing</a>
  &#8226;   <a href="#openpyxl.utils.datetime">openpyxl.utils.datetime</a>
@@ -10880,6 +10936,7 @@ imported by:
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#selectors">selectors</a>
  &#8226;   <a href="#statistics">statistics</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
 
   </div>
 
@@ -12195,7 +12252,6 @@ imported by:
  &#8226;   <a href="#numpy.typing">numpy.typing</a>
  &#8226;   <a href="#numpy.version">numpy.version</a>
  &#8226;   <a href="#openpyxl.compat.numbers">openpyxl.compat.numbers</a>
- &#8226;   <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
  &#8226;   <a href="#pandas._testing">pandas._testing</a>
  &#8226;   <a href="#pandas._testing.asserters">pandas._testing.asserters</a>
  &#8226;   <a href="#pandas._typing">pandas._typing</a>
@@ -18644,7 +18700,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#excel_manager">excel_manager</a>
+    <a href="#file_operations">file_operations</a>
  &#8226;   <a href="#openpyxl._constants">openpyxl._constants</a>
  &#8226;   <a href="#openpyxl.cell">openpyxl.cell</a>
  &#8226;   <a href="#openpyxl.cell._writer">openpyxl.cell._writer</a>
@@ -18669,6 +18725,8 @@ imported by:
  &#8226;   <a href="#openpyxl.xml">openpyxl.xml</a>
  &#8226;   <a href="#openpyxl.xml.functions">openpyxl.xml.functions</a>
  &#8226;   <a href="#pandas.io.excel._openpyxl">pandas.io.excel._openpyxl</a>
+ &#8226;   <a href="#script_selector.py">script_selector.py</a>
+ &#8226;   <a href="#utils">utils</a>
 
   </div>
 
@@ -20074,7 +20132,6 @@ imported by:
  &#8226;   <a href="#openpyxl.cell.cell">openpyxl.cell.cell</a>
  &#8226;   <a href="#openpyxl.cell.rich_text">openpyxl.cell.rich_text</a>
  &#8226;   <a href="#openpyxl.compat.numbers">openpyxl.compat.numbers</a>
- &#8226;   <a href="#openpyxl.compat.product">openpyxl.compat.product</a>
  &#8226;   <a href="#openpyxl.compat.strings">openpyxl.compat.strings</a>
  &#8226;   <a href="#openpyxl.descriptors.excel">openpyxl.descriptors.excel</a>
  &#8226;   <a href="#openpyxl.descriptors.nested">openpyxl.descriptors.nested</a>
@@ -20112,25 +20169,6 @@ imported by:
     <a href="#openpyxl">openpyxl</a>
  &#8226;   <a href="#openpyxl.compat">openpyxl.compat</a>
  &#8226;   <a href="#openpyxl.compat.strings">openpyxl.compat.strings</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="openpyxl.compat.product"></a>
-  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/openpyxl/compat/product.py" type="text/plain"><tt>openpyxl.compat.product</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#functools">functools</a>
- &#8226;   <a href="#math">math</a>
- &#8226;   <a href="#openpyxl.compat">openpyxl.compat</a>
- &#8226;   <a href="#operator">operator</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
 
   </div>
 
@@ -22022,7 +22060,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#openpyxl.cell.cell">openpyxl.cell.cell</a>
+    <a href="#file_operations">file_operations</a>
+ &#8226;   <a href="#openpyxl.cell.cell">openpyxl.cell.cell</a>
  &#8226;   <a href="#openpyxl.cell.read_only">openpyxl.cell.read_only</a>
  &#8226;   <a href="#openpyxl.chart.reference">openpyxl.chart.reference</a>
  &#8226;   <a href="#openpyxl.chart.series_factory">openpyxl.chart.series_factory</a>
@@ -22031,7 +22070,6 @@ imported by:
  &#8226;   <a href="#openpyxl.formula.translate">openpyxl.formula.translate</a>
  &#8226;   <a href="#openpyxl.utils.bound_dictionary">openpyxl.utils.bound_dictionary</a>
  &#8226;   <a href="#openpyxl.utils.cell">openpyxl.utils.cell</a>
- &#8226;   <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
  &#8226;   <a href="#openpyxl.utils.datetime">openpyxl.utils.datetime</a>
  &#8226;   <a href="#openpyxl.utils.escape">openpyxl.utils.escape</a>
  &#8226;   <a href="#openpyxl.utils.exceptions">openpyxl.utils.exceptions</a>
@@ -22050,6 +22088,7 @@ imported by:
  &#8226;   <a href="#openpyxl.worksheet.print_settings">openpyxl.worksheet.print_settings</a>
  &#8226;   <a href="#openpyxl.worksheet.table">openpyxl.worksheet.table</a>
  &#8226;   <a href="#openpyxl.worksheet.worksheet">openpyxl.worksheet.worksheet</a>
+ &#8226;   <a href="#utils">utils</a>
 
   </div>
 
@@ -22091,27 +22130,6 @@ imported by:
  &#8226;   <a href="#openpyxl.utils">openpyxl.utils</a>
  &#8226;   <a href="#openpyxl.workbook.defined_name">openpyxl.workbook.defined_name</a>
  &#8226;   <a href="#openpyxl.worksheet.print_settings">openpyxl.worksheet.print_settings</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="openpyxl.utils.dataframe"></a>
-  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/openpyxl/utils/dataframe.py" type="text/plain"><tt>openpyxl.utils.dataframe</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#itertools">itertools</a>
- &#8226;   <a href="#numpy">numpy</a>
- &#8226;   <a href="#openpyxl.compat.product">openpyxl.compat.product</a>
- &#8226;   <a href="#openpyxl.utils">openpyxl.utils</a>
- &#8226;   <a href="#operator">operator</a>
- &#8226;   <a href="#pandas">pandas</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#excel_manager">excel_manager</a>
 
   </div>
 
@@ -22812,9 +22830,10 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#excel_manager">excel_manager</a>
+    <a href="#file_operations">file_operations</a>
  &#8226;   <a href="#openpyxl.worksheet._reader">openpyxl.worksheet._reader</a>
  &#8226;   <a href="#openpyxl.worksheet.worksheet">openpyxl.worksheet.worksheet</a>
+ &#8226;   <a href="#utils">utils</a>
 
   </div>
 
@@ -23455,8 +23474,6 @@ imported by:
  &#8226;   <a href="#numpy.polynomial.polyutils">numpy.polynomial.polyutils</a>
  &#8226;   <a href="#numpy.testing._private.utils">numpy.testing._private.utils</a>
  &#8226;   <a href="#openpyxl.chart._chart">openpyxl.chart._chart</a>
- &#8226;   <a href="#openpyxl.compat.product">openpyxl.compat.product</a>
- &#8226;   <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
  &#8226;   <a href="#openpyxl.worksheet.cell_range">openpyxl.worksheet.cell_range</a>
  &#8226;   <a href="#openpyxl.worksheet.datavalidation">openpyxl.worksheet.datavalidation</a>
  &#8226;   <a href="#openpyxl.worksheet.worksheet">openpyxl.worksheet.worksheet</a>
@@ -23504,6 +23521,7 @@ imported by:
  &#8226;   <a href="#six">six</a>
  &#8226;   <a href="#statistics">statistics</a>
  &#8226;   <a href="#typing">typing</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
 
   </div>
 
@@ -23514,7 +23532,7 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>org</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#copy">copy</a>
+    <a href="#pickle">pickle</a>
 
   </div>
 
@@ -23552,6 +23570,7 @@ imported by:
  &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#bz2">bz2</a>
  &#8226;   <a href="#charset_normalizer.api">charset_normalizer.api</a>
+ &#8226;   <a href="#command_generator">command_generator</a>
  &#8226;   <a href="#concurrent.futures.process">concurrent.futures.process</a>
  &#8226;   <a href="#concurrent.futures.thread">concurrent.futures.thread</a>
  &#8226;   <a href="#contextlib">contextlib</a>
@@ -23559,7 +23578,7 @@ imported by:
  &#8226;   <a href="#dateutil.tz.tz">dateutil.tz.tz</a>
  &#8226;   <a href="#doctest">doctest</a>
  &#8226;   <a href="#email.utils">email.utils</a>
- &#8226;   <a href="#excel_manager">excel_manager</a>
+ &#8226;   <a href="#file_operations">file_operations</a>
  &#8226;   <a href="#fileinput">fileinput</a>
  &#8226;   <a href="#fnmatch">fnmatch</a>
  &#8226;   <a href="#genericpath">genericpath</a>
@@ -23688,8 +23707,13 @@ imported by:
  &#8226;   <a href="#unittest.loader">unittest.loader</a>
  &#8226;   <a href="#unittest.main">unittest.main</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
+ &#8226;   <a href="#utils">utils</a>
  &#8226;   <a href="#uuid">uuid</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
  &#8226;   <a href="#xml.dom.domreg">xml.dom.domreg</a>
  &#8226;   <a href="#xml.sax">xml.sax</a>
  &#8226;   <a href="#xml.sax.saxutils">xml.sax.saxutils</a>
@@ -24214,8 +24238,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#excel_manager">excel_manager</a>
- &#8226;   <a href="#openpyxl.utils.dataframe">openpyxl.utils.dataframe</a>
+    <a href="#command_generator">command_generator</a>
  &#8226;   <a href="#pandas">pandas</a>
  &#8226;   <a href="#pandas._config">pandas._config</a>
  &#8226;   <a href="#pandas._libs">pandas._libs</a>
@@ -24346,6 +24369,7 @@ imported by:
  &#8226;   <a href="#pandas.tseries.holiday">pandas.tseries.holiday</a>
  &#8226;   <a href="#pandas.util">pandas.util</a>
  &#8226;   <a href="#pandas.util._exceptions">pandas.util._exceptions</a>
+ &#8226;   <a href="#utils">utils</a>
 
   </div>
 
@@ -36440,14 +36464,14 @@ imported by:
   <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/pickle.py" type="text/plain"><tt>pickle</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#'org.python'">'org.python'</a>
- &#8226;   <a href="#_compat_pickle">_compat_pickle</a>
+    <a href="#_compat_pickle">_compat_pickle</a>
  &#8226;   <a href="#_pickle">_pickle</a>
  &#8226;   <a href="#codecs">codecs</a>
  &#8226;   <a href="#copyreg">copyreg</a>
  &#8226;   <a href="#functools">functools</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#itertools">itertools</a>
+ &#8226;   <a href="#org">org</a>
  &#8226;   <a href="#pprint">pprint</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#struct">struct</a>
@@ -38473,6 +38497,11 @@ imported by:
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
  &#8226;   <a href="#xml.etree.ElementPath">xml.etree.ElementPath</a>
  &#8226;   <a href="#xml.etree.ElementTree">xml.etree.ElementTree</a>
  &#8226;   <a href="#yaml.constructor">yaml.constructor</a>
@@ -38784,6 +38813,7 @@ imported by:
  &#8226;   <a href="#tempfile">tempfile</a>
  &#8226;   <a href="#uuid">uuid</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
  &#8226;   <a href="#zipfile">zipfile</a>
 
   </div>
@@ -39168,6 +39198,7 @@ imported by:
  &#8226;   <a href="#script_selector.py">script_selector.py</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#tarfile">tarfile</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
  &#8226;   <a href="#zipfile">zipfile</a>
 
   </div>
@@ -39287,24 +39318,8 @@ imported by:
  &#8226;   <a href="#pytz.tzfile">pytz.tzfile</a>
  &#8226;   <a href="#six">six</a>
  &#8226;   <a href="#tarfile">tarfile</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
  &#8226;   <a href="#zipfile">zipfile</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="styled_gui"></a>
-  <a target="code" href="///C:/Users/j00914576/Desktop/Code/styled_gui.py" type="text/plain"><tt>styled_gui</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#tkinter">tkinter</a>
- &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#script_selector.py">script_selector.py</a>
 
   </div>
 
@@ -39399,6 +39414,7 @@ imported by:
  &#8226;   <a href="#code">code</a>
  &#8226;   <a href="#codecs">codecs</a>
  &#8226;   <a href="#collections">collections</a>
+ &#8226;   <a href="#command_generator">command_generator</a>
  &#8226;   <a href="#concurrent.futures.process">concurrent.futures.process</a>
  &#8226;   <a href="#contextlib">contextlib</a>
  &#8226;   <a href="#ctypes">ctypes</a>
@@ -39574,6 +39590,7 @@ imported by:
  &#8226;   <a href="#unittest.suite">unittest.suite</a>
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
+ &#8226;   <a href="#utils">utils</a>
  &#8226;   <a href="#uuid">uuid</a>
  &#8226;   <a href="#warnings">warnings</a>
  &#8226;   <a href="#weakref">weakref</a>
@@ -39714,6 +39731,8 @@ imported by:
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#urllib.response">urllib.response</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
 
   </div>
 
@@ -39903,6 +39922,7 @@ imported by:
  &#8226;   <a href="#unittest.runner">unittest.runner</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#uuid">uuid</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
  &#8226;   <a href="#xmlrpc.client">xmlrpc.client</a>
  &#8226;   <a href="#zipfile">zipfile</a>
  &#8226;   <a href="#zipimport">zipimport</a>
@@ -39923,6 +39943,7 @@ imports:
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#sys">sys</a>
  &#8226;   <a href="#tkinter.constants">tkinter.constants</a>
+ &#8226;   <a href="#tkinter.font">tkinter.font</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
  &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
  &#8226;   <a href="#traceback">traceback</a>
@@ -39931,10 +39952,11 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#script_selector.py">script_selector.py</a>
- &#8226;   <a href="#styled_gui">styled_gui</a>
+    <a href="#gui_helpers">gui_helpers</a>
+ &#8226;   <a href="#script_selector.py">script_selector.py</a>
  &#8226;   <a href="#tkinter.commondialog">tkinter.commondialog</a>
  &#8226;   <a href="#tkinter.constants">tkinter.constants</a>
+ &#8226;   <a href="#tkinter.font">tkinter.font</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
  &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
 
@@ -39975,6 +39997,24 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="tkinter.font"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/tkinter/font.py" type="text/plain"><tt>tkinter.font</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#itertools">itertools</a>
+ &#8226;   <a href="#tkinter">tkinter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#gui_helpers">gui_helpers</a>
+ &#8226;   <a href="#tkinter">tkinter</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="tkinter.messagebox"></a>
   <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/tkinter/messagebox.py" type="text/plain"><tt>tkinter.messagebox</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -40002,8 +40042,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#script_selector.py">script_selector.py</a>
- &#8226;   <a href="#styled_gui">styled_gui</a>
+    <a href="#gui_helpers">gui_helpers</a>
  &#8226;   <a href="#tkinter">tkinter</a>
 
   </div>
@@ -41029,6 +41068,30 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="utils"></a>
+  <a target="code" href="///C:/Users/j00914576/Desktop/Code/utils.py" type="text/plain"><tt>utils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#json">json</a>
+ &#8226;   <a href="#openpyxl">openpyxl</a>
+ &#8226;   <a href="#openpyxl.utils">openpyxl.utils</a>
+ &#8226;   <a href="#openpyxl.worksheet.datavalidation">openpyxl.worksheet.datavalidation</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pandas">pandas</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#command_generator">command_generator</a>
+ &#8226;   <a href="#file_operations">file_operations</a>
+ &#8226;   <a href="#script_selector.py">script_selector.py</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="uuid"></a>
   <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/uuid.py" type="text/plain"><tt>uuid</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -41314,6 +41377,16 @@ imported by:
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.chart_bar">xlsxwriter.chart_bar</a>
+ &#8226;   <a href="#xlsxwriter.chart_doughnut">xlsxwriter.chart_doughnut</a>
+ &#8226;   <a href="#xlsxwriter.chart_pie">xlsxwriter.chart_pie</a>
+ &#8226;   <a href="#xlsxwriter.chart_scatter">xlsxwriter.chart_scatter</a>
+ &#8226;   <a href="#xlsxwriter.format">xlsxwriter.format</a>
+ &#8226;   <a href="#xlsxwriter.shape">xlsxwriter.shape</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
  &#8226;   <a href="#xml.etree.ElementTree">xml.etree.ElementTree</a>
  &#8226;   <a href="#zipfile">zipfile</a>
 
@@ -41462,10 +41535,800 @@ imported by:
 
 <div class="node">
   <a name="xlsxwriter"></a>
-  <a target="code" href="" type="text/plain"><tt>xlsxwriter</tt></a>
-<span class="moduletype">MissingModule</span>  <div class="import">
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/__init__.py" type="text/plain"><tt>xlsxwriter</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.chart_pie">xlsxwriter.chart_pie</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
 imported by:
     <a href="#pandas.io.excel._xlsxwriter">pandas.io.excel._xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.app">xlsxwriter.app</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.chart_area">xlsxwriter.chart_area</a>
+ &#8226;   <a href="#xlsxwriter.chart_bar">xlsxwriter.chart_bar</a>
+ &#8226;   <a href="#xlsxwriter.chart_column">xlsxwriter.chart_column</a>
+ &#8226;   <a href="#xlsxwriter.chart_doughnut">xlsxwriter.chart_doughnut</a>
+ &#8226;   <a href="#xlsxwriter.chart_line">xlsxwriter.chart_line</a>
+ &#8226;   <a href="#xlsxwriter.chart_pie">xlsxwriter.chart_pie</a>
+ &#8226;   <a href="#xlsxwriter.chart_radar">xlsxwriter.chart_radar</a>
+ &#8226;   <a href="#xlsxwriter.chart_scatter">xlsxwriter.chart_scatter</a>
+ &#8226;   <a href="#xlsxwriter.chart_stock">xlsxwriter.chart_stock</a>
+ &#8226;   <a href="#xlsxwriter.chartsheet">xlsxwriter.chartsheet</a>
+ &#8226;   <a href="#xlsxwriter.comments">xlsxwriter.comments</a>
+ &#8226;   <a href="#xlsxwriter.contenttypes">xlsxwriter.contenttypes</a>
+ &#8226;   <a href="#xlsxwriter.core">xlsxwriter.core</a>
+ &#8226;   <a href="#xlsxwriter.custom">xlsxwriter.custom</a>
+ &#8226;   <a href="#xlsxwriter.drawing">xlsxwriter.drawing</a>
+ &#8226;   <a href="#xlsxwriter.exceptions">xlsxwriter.exceptions</a>
+ &#8226;   <a href="#xlsxwriter.format">xlsxwriter.format</a>
+ &#8226;   <a href="#xlsxwriter.metadata">xlsxwriter.metadata</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.relationships">xlsxwriter.relationships</a>
+ &#8226;   <a href="#xlsxwriter.rich_value">xlsxwriter.rich_value</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_rel">xlsxwriter.rich_value_rel</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_structure">xlsxwriter.rich_value_structure</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_types">xlsxwriter.rich_value_types</a>
+ &#8226;   <a href="#xlsxwriter.shape">xlsxwriter.shape</a>
+ &#8226;   <a href="#xlsxwriter.sharedstrings">xlsxwriter.sharedstrings</a>
+ &#8226;   <a href="#xlsxwriter.styles">xlsxwriter.styles</a>
+ &#8226;   <a href="#xlsxwriter.table">xlsxwriter.table</a>
+ &#8226;   <a href="#xlsxwriter.theme">xlsxwriter.theme</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.vml">xlsxwriter.vml</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.app"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/app.py" type="text/plain"><tt>xlsxwriter.app</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart.py" type="text/plain"><tt>xlsxwriter.chart</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#copy">copy</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.shape">xlsxwriter.shape</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart_area">xlsxwriter.chart_area</a>
+ &#8226;   <a href="#xlsxwriter.chart_bar">xlsxwriter.chart_bar</a>
+ &#8226;   <a href="#xlsxwriter.chart_column">xlsxwriter.chart_column</a>
+ &#8226;   <a href="#xlsxwriter.chart_line">xlsxwriter.chart_line</a>
+ &#8226;   <a href="#xlsxwriter.chart_pie">xlsxwriter.chart_pie</a>
+ &#8226;   <a href="#xlsxwriter.chart_radar">xlsxwriter.chart_radar</a>
+ &#8226;   <a href="#xlsxwriter.chart_scatter">xlsxwriter.chart_scatter</a>
+ &#8226;   <a href="#xlsxwriter.chart_stock">xlsxwriter.chart_stock</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_area"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_area.py" type="text/plain"><tt>xlsxwriter.chart_area</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_bar"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_bar.py" type="text/plain"><tt>xlsxwriter.chart_bar</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_column"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_column.py" type="text/plain"><tt>xlsxwriter.chart_column</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_doughnut"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_doughnut.py" type="text/plain"><tt>xlsxwriter.chart_doughnut</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart_pie">xlsxwriter.chart_pie</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_line"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_line.py" type="text/plain"><tt>xlsxwriter.chart_line</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_pie"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_pie.py" type="text/plain"><tt>xlsxwriter.chart_pie</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart_doughnut">xlsxwriter.chart_doughnut</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_radar"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_radar.py" type="text/plain"><tt>xlsxwriter.chart_radar</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_scatter"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_scatter.py" type="text/plain"><tt>xlsxwriter.chart_scatter</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chart_stock"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chart_stock.py" type="text/plain"><tt>xlsxwriter.chart_stock</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.chartsheet"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/chartsheet.py" type="text/plain"><tt>xlsxwriter.chartsheet</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.drawing">xlsxwriter.drawing</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.comments"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/comments.py" type="text/plain"><tt>xlsxwriter.comments</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.contenttypes"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/contenttypes.py" type="text/plain"><tt>xlsxwriter.contenttypes</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#copy">copy</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.core"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/core.py" type="text/plain"><tt>xlsxwriter.core</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#datetime">datetime</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.custom"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/custom.py" type="text/plain"><tt>xlsxwriter.custom</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.drawing"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/drawing.py" type="text/plain"><tt>xlsxwriter.drawing</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.shape">xlsxwriter.shape</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.chartsheet">xlsxwriter.chartsheet</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.exceptions"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/exceptions.py" type="text/plain"><tt>xlsxwriter.exceptions</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.format"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/format.py" type="text/plain"><tt>xlsxwriter.format</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.metadata"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/metadata.py" type="text/plain"><tt>xlsxwriter.metadata</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.packager"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/packager.py" type="text/plain"><tt>xlsxwriter.packager</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#io">io</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#shutil">shutil</a>
+ &#8226;   <a href="#stat">stat</a>
+ &#8226;   <a href="#tempfile">tempfile</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.app">xlsxwriter.app</a>
+ &#8226;   <a href="#xlsxwriter.comments">xlsxwriter.comments</a>
+ &#8226;   <a href="#xlsxwriter.contenttypes">xlsxwriter.contenttypes</a>
+ &#8226;   <a href="#xlsxwriter.core">xlsxwriter.core</a>
+ &#8226;   <a href="#xlsxwriter.custom">xlsxwriter.custom</a>
+ &#8226;   <a href="#xlsxwriter.exceptions">xlsxwriter.exceptions</a>
+ &#8226;   <a href="#xlsxwriter.metadata">xlsxwriter.metadata</a>
+ &#8226;   <a href="#xlsxwriter.relationships">xlsxwriter.relationships</a>
+ &#8226;   <a href="#xlsxwriter.rich_value">xlsxwriter.rich_value</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_rel">xlsxwriter.rich_value_rel</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_structure">xlsxwriter.rich_value_structure</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_types">xlsxwriter.rich_value_types</a>
+ &#8226;   <a href="#xlsxwriter.sharedstrings">xlsxwriter.sharedstrings</a>
+ &#8226;   <a href="#xlsxwriter.styles">xlsxwriter.styles</a>
+ &#8226;   <a href="#xlsxwriter.table">xlsxwriter.table</a>
+ &#8226;   <a href="#xlsxwriter.theme">xlsxwriter.theme</a>
+ &#8226;   <a href="#xlsxwriter.vml">xlsxwriter.vml</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.relationships"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/relationships.py" type="text/plain"><tt>xlsxwriter.relationships</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.rich_value"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/rich_value.py" type="text/plain"><tt>xlsxwriter.rich_value</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.rich_value_rel"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/rich_value_rel.py" type="text/plain"><tt>xlsxwriter.rich_value_rel</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.rich_value_structure"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/rich_value_structure.py" type="text/plain"><tt>xlsxwriter.rich_value_structure</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.rich_value_types"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/rich_value_types.py" type="text/plain"><tt>xlsxwriter.rich_value_types</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.shape"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/shape.py" type="text/plain"><tt>xlsxwriter.shape</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#copy">copy</a>
+ &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.drawing">xlsxwriter.drawing</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.sharedstrings"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/sharedstrings.py" type="text/plain"><tt>xlsxwriter.sharedstrings</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.styles"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/styles.py" type="text/plain"><tt>xlsxwriter.styles</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.table"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/table.py" type="text/plain"><tt>xlsxwriter.table</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.theme"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/theme.py" type="text/plain"><tt>xlsxwriter.theme</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#io">io</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.utility"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/utility.py" type="text/plain"><tt>xlsxwriter.utility</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#datetime">datetime</a>
+ &#8226;   <a href="#hashlib">hashlib</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.exceptions">xlsxwriter.exceptions</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.comments">xlsxwriter.comments</a>
+ &#8226;   <a href="#xlsxwriter.drawing">xlsxwriter.drawing</a>
+ &#8226;   <a href="#xlsxwriter.sharedstrings">xlsxwriter.sharedstrings</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.vml"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/vml.py" type="text/plain"><tt>xlsxwriter.vml</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.workbook"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/workbook.py" type="text/plain"><tt>xlsxwriter.workbook</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#datetime">datetime</a>
+ &#8226;   <a href="#decimal">decimal</a>
+ &#8226;   <a href="#fractions">fractions</a>
+ &#8226;   <a href="#operator">operator</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#time">time</a>
+ &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chart_area">xlsxwriter.chart_area</a>
+ &#8226;   <a href="#xlsxwriter.chart_bar">xlsxwriter.chart_bar</a>
+ &#8226;   <a href="#xlsxwriter.chart_column">xlsxwriter.chart_column</a>
+ &#8226;   <a href="#xlsxwriter.chart_doughnut">xlsxwriter.chart_doughnut</a>
+ &#8226;   <a href="#xlsxwriter.chart_line">xlsxwriter.chart_line</a>
+ &#8226;   <a href="#xlsxwriter.chart_pie">xlsxwriter.chart_pie</a>
+ &#8226;   <a href="#xlsxwriter.chart_radar">xlsxwriter.chart_radar</a>
+ &#8226;   <a href="#xlsxwriter.chart_scatter">xlsxwriter.chart_scatter</a>
+ &#8226;   <a href="#xlsxwriter.chart_stock">xlsxwriter.chart_stock</a>
+ &#8226;   <a href="#xlsxwriter.chartsheet">xlsxwriter.chartsheet</a>
+ &#8226;   <a href="#xlsxwriter.exceptions">xlsxwriter.exceptions</a>
+ &#8226;   <a href="#xlsxwriter.format">xlsxwriter.format</a>
+ &#8226;   <a href="#xlsxwriter.packager">xlsxwriter.packager</a>
+ &#8226;   <a href="#xlsxwriter.sharedstrings">xlsxwriter.sharedstrings</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+ &#8226;   <a href="#zipfile">zipfile</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter">xlsxwriter</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.worksheet"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/worksheet.py" type="text/plain"><tt>xlsxwriter.worksheet</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#collections">collections</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#decimal">decimal</a>
+ &#8226;   <a href="#fractions">fractions</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#io">io</a>
+ &#8226;   <a href="#math">math</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#tempfile">tempfile</a>
+ &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.drawing">xlsxwriter.drawing</a>
+ &#8226;   <a href="#xlsxwriter.exceptions">xlsxwriter.exceptions</a>
+ &#8226;   <a href="#xlsxwriter.format">xlsxwriter.format</a>
+ &#8226;   <a href="#xlsxwriter.shape">xlsxwriter.shape</a>
+ &#8226;   <a href="#xlsxwriter.utility">xlsxwriter.utility</a>
+ &#8226;   <a href="#xlsxwriter.xmlwriter">xlsxwriter.xmlwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.chartsheet">xlsxwriter.chartsheet</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlsxwriter.xmlwriter"></a>
+  <a target="code" href="///C:/Users/j00914576/AppData/Local/Programs/Python/Python311/Lib/site-packages/xlsxwriter/xmlwriter.py" type="text/plain"><tt>xlsxwriter.xmlwriter</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#io">io</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#xlsxwriter">xlsxwriter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlsxwriter">xlsxwriter</a>
+ &#8226;   <a href="#xlsxwriter.app">xlsxwriter.app</a>
+ &#8226;   <a href="#xlsxwriter.chart">xlsxwriter.chart</a>
+ &#8226;   <a href="#xlsxwriter.comments">xlsxwriter.comments</a>
+ &#8226;   <a href="#xlsxwriter.contenttypes">xlsxwriter.contenttypes</a>
+ &#8226;   <a href="#xlsxwriter.core">xlsxwriter.core</a>
+ &#8226;   <a href="#xlsxwriter.custom">xlsxwriter.custom</a>
+ &#8226;   <a href="#xlsxwriter.drawing">xlsxwriter.drawing</a>
+ &#8226;   <a href="#xlsxwriter.format">xlsxwriter.format</a>
+ &#8226;   <a href="#xlsxwriter.metadata">xlsxwriter.metadata</a>
+ &#8226;   <a href="#xlsxwriter.relationships">xlsxwriter.relationships</a>
+ &#8226;   <a href="#xlsxwriter.rich_value">xlsxwriter.rich_value</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_rel">xlsxwriter.rich_value_rel</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_structure">xlsxwriter.rich_value_structure</a>
+ &#8226;   <a href="#xlsxwriter.rich_value_types">xlsxwriter.rich_value_types</a>
+ &#8226;   <a href="#xlsxwriter.sharedstrings">xlsxwriter.sharedstrings</a>
+ &#8226;   <a href="#xlsxwriter.styles">xlsxwriter.styles</a>
+ &#8226;   <a href="#xlsxwriter.table">xlsxwriter.table</a>
+ &#8226;   <a href="#xlsxwriter.vml">xlsxwriter.vml</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
+ &#8226;   <a href="#xlsxwriter.worksheet">xlsxwriter.worksheet</a>
 
   </div>
 
@@ -42436,6 +43299,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.importlib_resources._compat">pkg_resources._vendor.importlib_resources._compat</a>
  &#8226;   <a href="#pkg_resources._vendor.zipp">pkg_resources._vendor.zipp</a>
  &#8226;   <a href="#shutil">shutil</a>
+ &#8226;   <a href="#xlsxwriter.workbook">xlsxwriter.workbook</a>
 
   </div>
 

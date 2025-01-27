@@ -1,59 +1,46 @@
 import subprocess
 import os
 import sys
-
-def install_pyinstaller():
-    """Verifica si PyInstaller está instalado, y si no, lo instala."""
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "show", "pyinstaller"])
-        print("PyInstaller ya está instalado.")
-    except subprocess.CalledProcessError:
-        print("PyInstaller no está instalado. Instalando...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "pyinstaller"])
+import shutil
 
 def create_executable():
-    """Crea el ejecutable usando PyInstaller."""
-    # Ruta a tu script principal
-    script = 'script_selector.py'
+    """Create the executable using PyInstaller."""
+    # Path to the main script
+    script = "script_selector.py"
 
-    # Archivos adicionales que se deben incluir en el ejecutable
+    # Additional files to include in the executable
     add_data = [
-        "nfs_share_script.py;.",
-        "cifs_share_script.py;.",
-        "readData.py;.",
-        "Documents\\CIFSShares.xlsx;Documents",
-        "Documents\\NFSShares.xlsx;Documents",
+        "commands_config.json;.",  # Include the JSON configuration file
+        "command_generator.py;.",  # Include the command generation file
+        "utils.py;.",              # Include utility functions
+        "file_operations.py;.",    # Include file operations module
+        "gui_helpers.py;.",        # Include GUI helpers module
     ]
 
-    # Construimos la opción de --add-data
-    add_data_option = ' '.join([f'--add-data "{item}"' for item in add_data])
+    # Build the --add-data option
+    add_data_option = " ".join([f'--add-data "{item}"' for item in add_data])
 
-    # Ruta de salida para el ejecutable
+    # Output directory for the executable
     output_dir = "dist"
 
-    # Verifica si ya existe una carpeta dist y la elimina si es necesario
+    # Clean up the output directory if it already exists
     if os.path.exists(output_dir):
-        print(f"Eliminando la carpeta '{output_dir}' existente...")
-        for root, dirs, files in os.walk(output_dir, topdown=False):
-            for filename in files:
-                os.remove(os.path.join(root, filename))
-            for dirname in dirs:
-                os.rmdir(os.path.join(root, dirname))
-        os.rmdir(output_dir)
+        print(f"Deleting existing '{output_dir}' directory...")
+        shutil.rmtree(output_dir)
 
-    # Comando para generar el ejecutable
-    pyinstaller_command = f'pyinstaller --onefile --windowed {add_data_option} {script}'
+    # Command to generate the executable
+    pyinstaller_command = (
+        f'pyinstaller --onefile --windowed --clean {add_data_option} {script}'
+    )
 
-    # Ejecuta el comando para generar el ejecutable
-    print("Generando el ejecutable...")
+    # Execute the command to generate the executable
+    print("Generating the executable...")
     subprocess.check_call(pyinstaller_command, shell=True)
 
-    print("El ejecutable ha sido generado correctamente.")
+    print("Executable generated successfully.")
 
 def main():
-    """Función principal para instalar PyInstaller y crear el ejecutable."""
-    # Uncomment the following line if you need to ensure PyInstaller is installed
-    # install_pyinstaller()
+    """Main function to create the executable."""
     create_executable()
 
 if __name__ == "__main__":
