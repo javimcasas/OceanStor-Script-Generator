@@ -105,6 +105,8 @@ The executable will be created in the `dist` folder.
 ```
 huawei-storage-script-generator/
 ├── script_selector.py          # Main application script
+├── command_generator.py        # Script to generate the commands
+├── file_operations.py          # Script to create and manage the xlsx files
 ├── exe_creator.py              # Script to create an executable
 ├── commands_config.json        # JSON configuration file
 ├── Documents/                  # Folder for generated Excel files
