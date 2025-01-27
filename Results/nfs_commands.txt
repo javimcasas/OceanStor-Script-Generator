@@ -1,5 +1,0 @@
-create share nfs local_path=/share1
-
-
-show share nfs
-

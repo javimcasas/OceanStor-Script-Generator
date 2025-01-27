@@ -1,4 +1,0 @@
-create file_system general name=fs1 workload_type_id=a pool_id=sp1
-
-show file_system general
-
