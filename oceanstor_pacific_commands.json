@@ -1,0 +1,281 @@
+{
+    "CIFS": {
+        "Create": {
+            "mandatory": [
+                {
+                    "name": "name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "local_path",
+                    "field_type": "text"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "oplock_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "notify_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "file_system_id",
+                    "field_type": "integer"
+                },
+                {
+                    "name": "offline_file_mode",
+                    "field_type": "select",
+                    "allowed_values": ["none", "manual", "documents", "programs"],
+                    "default": "manual"
+                },
+                {
+                    "name": "smb2_ca_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "ip_control_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "abe_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "audit_items",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_filter_enable",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "apply_default_acl",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "share_type",
+                    "field_type": "select",
+                    "allowed_values": ["normal", "homedir"],
+                    "default": "normal"
+                },
+                {
+                    "name": "show_previous_versions_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "show_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "browse_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "account_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "sync_write_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "dir_umask",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_umask",
+                    "field_type": "text"
+                },
+                {
+                    "name": "lease_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "smb3_encryption_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "no"
+                },
+                {
+                    "name": "unencrypted_access",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"],
+                    "default": "yes"
+                },
+                {
+                    "name": "description",
+                    "field_type": "text"
+                }
+            ]
+        },
+        "Change": {
+            "mandatory": [
+                {
+                    "name": "share_id",
+                    "field_type": "integer"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "oplock_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "notify_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "offline_file_mode",
+                    "field_type": "select",
+                    "allowed_values": ["none", "manual", "documents", "programs"]
+                },
+                {
+                    "name": "smb2_ca_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "ip_control_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "abe_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "audit_items",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_filter_enable",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "apply_default_acl",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "show_previous_versions_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "show_snapshot_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "browse_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "account_name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "sync_write_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "dir_umask",
+                    "field_type": "text"
+                },
+                {
+                    "name": "file_umask",
+                    "field_type": "text"
+                },
+                {
+                    "name": "lease_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "smb3_encryption_enabled",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "unencrypted_access",
+                    "field_type": "select",
+                    "allowed_values": ["yes", "no"]
+                },
+                {
+                    "name": "description",
+                    "field_type": "text"
+                }
+            ]
+        }
+    },
+    "Namespace": {
+        "Create": {
+            "mandatory": [
+                {
+                    "name": "name",
+                    "field_type": "text"
+                },
+                {
+                    "name": "storage_pool_id",
+                    "field_type": "integer"
+                },
+                {
+                    "name": "account_id",
+                    "field_type": "integer"
+                }
+            ],
+            "optional": [
+                {
+                    "name": "forbidden_dpc",
+                    "field_type": "select",
+                    "allowed_values": ["true", "false"],
+                    "default": "true"
+                },
+                {
+                    "name": "case_sensitive",
+                    "field_type": "select",
+                    "allowed_values": ["true", "false"],
+                    "default": "false"
+                },
+                {
+                    "name": "acl_policy_type",
+                    "field_type": "select",
+                    "allowed_values": ["mixed", "OtherType"],
+                    "default": "Mixed"
+                }
+            ]
+        }
+    }
+}

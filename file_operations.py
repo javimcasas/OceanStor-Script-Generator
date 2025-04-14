@@ -5,10 +5,11 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 from utils import load_config
 
-def create_excel_for_resource(resource_type, excel_path, num_rows=1000):
+def create_excel_for_resource(resource_type, excel_path, device_var, num_rows=1000):
     """Create an Excel file for a specific resource type with styling and multiple rows for user input."""
     if not os.path.exists(excel_path):
-        config = load_config()
+        config = load_config(device_var)
+        print(config)
         resource_config = config.get(resource_type, {})
 
         # Create a new workbook
