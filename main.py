@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, ttk, filedialog
 import subprocess
 import os, sys
-from utils import load_config, get_data_file_path, open_directory
+from utils import load_config, get_data_file_path, open_directory, encapsulate_results
 from file_operations import create_excel_for_resource
 from gui_helpers import apply_style, create_buttons_and_dropdown, toggle_loading
 from command_generator import main as generate_commands
@@ -109,10 +109,18 @@ def import_excel(root):
             # Process the file directly
             process_imported_data(file_path)
             
+            # Encapsulate results into zip file
+            zip_path = encapsulate_results()
+            
+            # Prepare success message
+            success_msg = "Excel file processed successfully!"
+            if zip_path:
+                success_msg += f"\n\nAll command files have been zipped as:\n{os.path.basename(zip_path)}"
+            
             # Ask user if they want to open the results folder
             response = messagebox.askyesno(
                 "Success", 
-                "Excel file processed successfully!\n\nWould you like to open the Imported_Results folder?"
+                f"{success_msg}\n\nWould you like to open the Imported_Results folder?"
             )
             
             if response:
