@@ -10,10 +10,30 @@ from openpyxl.utils import get_column_letter
 from tkinter import messagebox
 
 def load_config(device_type):
+    """Load configuration from JSON file, works both in development and in executable."""
     config_file = f"{device_type.lower().replace(' ', '_')}_commands.json"
-    with open(config_file, 'r') as file:
-        config = json.load(file)
-    return config
+    
+    # Determine the base path based on whether we're running as an executable
+    if getattr(sys, 'frozen', False):
+        # Running as executable - look in the temporary _MEIPASS directory
+        base_path = sys._MEIPASS
+    else:
+        # Running as script - look in the current directory
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    
+    # Construct the full path to the config file
+    config_path = os.path.join(base_path, config_file)
+    
+    try:
+        with open(config_path, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        # Try one more time in the current directory (for some edge cases)
+        try:
+            with open(config_file, 'r', encoding='utf-8') as file:
+                return json.load(file)
+        except Exception as e:
+            raise FileNotFoundError(f"Could not find configuration file {config_file} in either {base_path} or current directory")
 
 def get_data_file_path(filename):
     """Get the correct path to a file, whether the app is running as a script or as an executable."""

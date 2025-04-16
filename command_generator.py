@@ -156,9 +156,9 @@ def main(resource_type, device_type):
         all_commands.append('')
 
     output_file_path = os.path.join(results_dir, f'{device_type.lower()}_{resource_type.lower()}_commands.txt')
-    with open(output_file_path, 'w') as file:
+    with open(output_file_path, 'w') as f:
         for command in all_commands:
-            file.write(command + '\n')
+            f.write(command + '\n')
 
     print(f"Commands written to: {output_file_path}")
     return output_file_path  # Return the path to the output file

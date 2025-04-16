@@ -136,6 +136,17 @@ def import_excel(root):
 def main():
     root = tk.Tk()
     root.title("Script Selector")
+    
+    try:
+        icon_path = os.path.join("Icons", "exe_icon.ico")
+        root.iconbitmap(icon_path)
+    except Exception as e:
+        try:
+            base_path = sys._MEIPASS if getattr(sys, 'frozen', False) else os.path.abspath(".")
+            icon_path = os.path.join(base_path, "Icons", "exe_icon.ico")
+            root.iconbitmap(icon_path)
+        except Exception as e:
+            print(f"Could not load window icon: {str(e)}")
 
     window_width = 550
     window_height = 450
