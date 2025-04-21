@@ -1,10 +1,9 @@
+import os, webbrowser
 import tkinter as tk
 from tkinter import ttk
 from tkinter import font as tkfont
 from tkinter import messagebox
-import json
-import webbrowser
-import os
+from PIL import Image, ImageTk
 
 # Global variable to track loading state
 _loading_window = None
@@ -182,7 +181,7 @@ def create_buttons_and_dropdown(root, open_excel, run_script, script_var, comman
     import_button.bind("<Enter>", lambda e: on_enter(import_button, "#F57C00"))
     import_button.bind("<Leave>", lambda e: on_leave(import_button, "#FF9800"))
 
-    # Run Script button (Blue) - now same size as others
+    # Run Script button (Blue)
     run_button = tk.Button(
         root,
         text="Run Script",
@@ -199,6 +198,60 @@ def create_buttons_and_dropdown(root, open_excel, run_script, script_var, comman
         pady=5,
     )
     run_button.pack(pady=(10, 10))
+    
+    # Add Help button with icon in the top-right corner
+    def open_help_url():
+        webbrowser.open("https://info.support.huawei.com/storageinfo/refer/#/home")
+
+    try:
+        # Load the help icon
+        icon_path = os.path.join("Icons", "help.ico")
+        help_icon = Image.open(icon_path)
+        help_icon = help_icon.resize((20, 20), Image.LANCZOS)  # Resize to fit button
+        
+        # Create a transparent background for the button
+        help_photo = ImageTk.PhotoImage(help_icon)
+        
+        help_button = tk.Button(
+            root,
+            image=help_photo,
+            command=open_help_url,
+            bg="#FFFFFF",  # Match window background
+            activebackground="#FFFFFF",  # Keep white when pressed
+            relief="flat",
+            bd=0,  # No border
+            highlightthickness=0,  # Remove highlight border
+            padx=0,
+            pady=0
+        )
+        help_button.image = help_photo  # Keep a reference to prevent garbage collection
+        help_button.place(relx=0.98, rely=0.02, anchor="ne")  # Position in top-right corner
+        
+        # Change cursor to hand when hovering
+        help_button.bind("<Enter>", lambda e: help_button.config(cursor="hand2"))
+        help_button.bind("<Leave>", lambda e: help_button.config(cursor=""))
+        
+    except Exception as e:
+        print(f"Could not load help icon: {e}")
+        # Fallback to minimal text button if icon fails to load
+        help_button = tk.Button(
+            root,
+            text="?",
+            command=open_help_url,
+            bg="#FFFFFF",
+            fg="#333333",
+            activebackground="#FFFFFF",
+            activeforeground="#333333",
+            relief="flat",
+            bd=0,
+            highlightthickness=0,
+            font=("Arial", 10, "bold"),
+            padx=0,
+            pady=0
+        )
+        help_button.place(relx=0.98, rely=0.02, anchor="ne")
+        help_button.bind("<Enter>", lambda e: help_button.config(cursor="hand2"))
+        help_button.bind("<Leave>", lambda e: help_button.config(cursor=""))
 
     # Add directory opening links
     def open_directory(directory):

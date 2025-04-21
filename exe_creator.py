@@ -12,7 +12,6 @@ def create_executable():
         ("command_generator.py", "."),
         ("file_operations.py", "."),
         ("gui_helpers.py", "."),
-        ("help_links.json", "."),
         ("import_operations.py", "."),
         ("log_operations.py", "."),
         ("oceanstor_dorado_commands.json", "."),
