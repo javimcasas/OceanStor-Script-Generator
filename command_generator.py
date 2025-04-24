@@ -4,164 +4,145 @@ import pandas as pd
 import re
 from utils import load_config, read_file, get_data_file_path
 
-def process_audit_items(audit_items_input):
-    """
-    Process the audit_items input to handle multiple formats:
-    - value1, value2, value3, ...
-    - value1,value2,value3
-    - value1 value2 value3
-    """
-    if pd.isna(audit_items_input) or audit_items_input == '':
-        return None
+class CommandGenerator:
+    def __init__(self):
+        self.field_processors = {
+            'text': self.process_text_field,
+            'select': self.process_select_field,
+            'list': self.process_list_field
+        }
+        self.field_transforms = {
+            'prefix_slash': self.transform_prefix_slash
+        }
 
-    # Remove any leading/trailing whitespace
-    audit_items_input = audit_items_input.strip()
-    
-    # Replace spaces and commas with a single comma
-    processed_value = re.sub(r"[\s,]+", ",", audit_items_input)
-    
-    return processed_value
+    def process_text_field(self, value, field_config):
+        """Process text field type"""
+        if pd.isna(value) or value == '':
+            return None
+        return str(value).strip()
 
-def generate_commands(data_frame, resource_type, command_type, mandatory_fields):
-    commands = []
+    def process_select_field(self, value, field_config):
+        """Process select field type with allowed values"""
+        if pd.isna(value) or value == '':
+            return field_config.get('default')
+        
+        value = str(value).strip().lower()
+        allowed = [v.lower() for v in field_config['allowed_values']]
+        
+        if value not in allowed:
+            raise ValueError(f"Invalid value '{value}' for field {field_config['name']}. Allowed: {allowed}")
+        return value
 
-    # Adding logic for 'create namespace' command
-    if resource_type == "Namespace" and command_type == "Create":
+    def process_list_field(self, value, field_config):
+        """Process list field type with separator"""
+        if pd.isna(value) or value == '':
+            return None
+            
+        separator = field_config.get('separator', ',')
+        items = [item.strip() for item in re.split(r"[\s,]+", str(value).strip()) if item.strip()]
+        return separator.join(items)
+
+    def transform_prefix_slash(self, value):
+        """Transform to ensure path starts with slash"""
+        value = str(value).strip()
+        if not value.startswith('/'):
+            return f"/{value.lstrip('/')}"
+        return value
+
+    def process_field_value(self, field_config, value):
+        """Process a field value based on its configuration"""
+        if pd.isna(value) or value == '':
+            return None
+            
+        field_type = field_config.get('field_type', 'text')
+        processor = self.field_processors.get(field_type, self.process_text_field)
+        
+        # First apply any transforms
+        if 'transform' in field_config:
+            transform = self.field_transforms.get(field_config['transform'])
+            if transform:
+                value = transform(value)
+        
+        # Then process the field
+        return processor(value, field_config)
+
+    def generate_command(self, row, operation_config):
+        """Generate a single command based on row data and operation config"""
+        command_parts = [operation_config['cli_prefix']]
+        
+        # Process mandatory fields
+        for field in operation_config.get('mandatory', []):
+            field_name = field['name']
+            value = row.get(field_name)
+            processed_value = self.process_field_value(field, value)
+            
+            if processed_value is None:
+                raise ValueError(f"Missing mandatory field: {field_name}")
+            
+            command_parts.append(f"{field_name}={processed_value}")
+        
+        # Process optional fields
+        for field in operation_config.get('optional', []):
+            field_name = field['name']
+            if field_name in row:
+                processed_value = self.process_field_value(field, row[field_name])
+                if processed_value is not None:
+                    command_parts.append(f"{field_name}={processed_value}")
+        
+        return ' '.join(command_parts)
+
+    def generate_commands(self, data_frame, resource_type, command_type, config):
+        """Generate all commands for a given operation"""
+        try:
+            operation_config = config[resource_type]['operations'][command_type]
+        except KeyError:
+            raise ValueError(f"Unsupported operation: {resource_type}/{command_type}")
+        
+        commands = []
         for index, row in data_frame.iterrows():
             try:
-                # Ensure all mandatory fields for 'create namespace' are present
-                missing_mandatory = [field for field in mandatory_fields if pd.isna(row.get(field)) or row.get(field) == '']
-                if missing_mandatory:
-                    print(f"Warning: Missing mandatory data in row {index + 1} of sheet '{command_type}'. Missing fields: {missing_mandatory}. Skipping.")
-                    continue
-
-                # Start building the 'create namespace' command
-                command = f"create namespace general"
-
-                # Loop through each mandatory field and add to command
-                for field in mandatory_fields:
-                    value = row.get(field)
-                    if field == 'name':
-                        command += f" name={value}"
-                    elif field == 'storage_pool_id':
-                        command += f" storage_pool_id={value}"
-                    elif field == 'account_id':
-                        command += f" account_id={value}"
-                    elif field == 'dir_split_policy' or field == 'dir_split_bitwidth' or field == 'root_split_bitwidth' or field == 'is_trash_enable' or field == 'is_trash_visible' or field == 'interval_trash' or field == 'checkpoint_trash' or field == 'recycle_op_permission' or field == 'enable_encrypt' or field == 'atime_update_mode' or field == 'rdc' or field == 'is_show_snap_dir' or field == 'dentry_table_type' or field == 'acl_policy_type' or field == 'crypt_alg' or field == 'forbidden_dpc' or field == 'concat_enable' or field == 'obs_hide_dir' or field == 'io_block_size' or field == 'unix_permissions' or field == 'case_sensitive' or field == 'aggre_policy_type' or field == 'dir_frag_policy' or field == 'attr_enhance_state' or field == 'access_is_owner' or field == 'std_compress_front_switch' or field == 'std_compress_tier_switch' or field == 'std_compress_dpc_switch' or field == 'std_compress_front_hot_pool_switch' or field == 'std_compress_tier_hot_pool_switch' or field == 'std_compress_front_mode' or field == 'std_compress_tier_mode' or field == 'snapshot_difference_switch' or field == 'glacier_read_switch' or field == 'glacier_read_rsv_time' or field == 'glacier_read_trig_restore' or field == 'application_type' or field == 'dtree_mig_switch' or field == 'tier_hot_cap_limit' or field == 'tier_warm_cap_limit' or field == 'tier_cold_cap_limit':
-                        # Optional fields
-                        if value:  # Only add if the value is not empty
-                            command += f" {field}={value}"
-
-                commands.append(command)
-            except KeyError as e:
-                print(f"Warning: Missing column '{e}' in row {index + 1} of sheet '{command_type}'. Skipping.")
+                commands.append(self.generate_command(row, operation_config))
+            except ValueError as e:
+                print(f"Warning: Skipping row {index + 1} - {str(e)}")
                 continue
-            except Exception as e:
-                print(f"Error processing row {index + 1}: {e}")
+        
+        return commands
+
+    def main(self, resource_type, device_type):
+        base_path = sys._MEIPASS if getattr(sys, 'frozen', False) else os.path.abspath(".")
+        excel_file_path = os.path.join(base_path, 'Documents', f'{device_type}_{resource_type}_commands.xlsx')
+        results_dir = os.path.join(base_path, 'Results')
+
+        if not os.path.exists(results_dir):
+            os.makedirs(results_dir)
+
+        config = load_config(device_type)
+        resource_config = config.get(resource_type, {})
+
+        if not os.path.exists(excel_file_path):
+            print(f"Error: Excel file '{excel_file_path}' does not exist.")
+            sys.exit(1)
+
+        all_commands = []
+        for command_type in resource_config.get('operations', {}).keys():
+            data_frame = read_file(excel_file_path, sheet_name=command_type)
+            if data_frame is None:
                 continue
 
-    else:
-        # Existing logic for other resource types
-        for index, row in data_frame.iterrows():
-            try:
-                if command_type != "Show":
-                    missing_mandatory = [field for field in mandatory_fields if pd.isna(row.get(field)) or row.get(field) == '']
-                    if missing_mandatory:
-                        print(f"Warning: Missing mandatory data in row {index + 1} of sheet '{command_type}'. Missing fields: {missing_mandatory}. Skipping.")
-                        continue
+            commands = self.generate_commands(data_frame, resource_type, command_type, config)
+            all_commands.extend(commands)
+            all_commands.append('')  # Add empty line between command groups
 
-                if resource_type == "FileSystem":
-                    command = f"{command_type.lower()} file_system general"
-                elif resource_type == "Quota":
-                    if command_type == "FS Quota":
-                        command = "create quota file_system"
-                    elif command_type == "Dtree Quota":
-                        command = "create quota dtree"
-                    elif command_type == "Change":
-                        command = "change quota general"
-                    elif command_type == "Show":
-                        command = "show quota general"
-                else:
-                    command = f"{command_type.lower()} share {resource_type.lower()}"
+        output_file_path = os.path.join(results_dir, f'{device_type.lower()}_{resource_type.lower()}_commands.txt')
+        with open(output_file_path, 'w') as f:
+            f.write('\n'.join(all_commands))
 
-                if command_type != "Show":
-                    for field in mandatory_fields:
-                        value = row.get(field)
-                        if field == 'local_path' and not str(value).startswith('/'):
-                            command += f" {field}=/{str(value).lstrip('/')}"
-
-                        elif field == 'audit_items':
-                            processed_value = process_audit_items(value)
-                            if processed_value:
-                                command += f" {field}={processed_value}"
-                        elif field == 'file_system_name' or field == 'file_system_id':
-                            command += f" {field}={value}"
-                        elif field == 'quota_type':
-                            command += f" {field}={value}"
-                        elif field == 'space_hard_quota' or field == 'space_soft_quota' or field == 'file_hard_quota' or field == 'file_soft_quota':
-                            command += f" {field}={value}"
-                        elif field == 'quota_id':
-                            command += f" {field}={value}"
-                        else:
-                            command += f" {field}={value}"
-
-                for param, value in row.items():
-                    if param in mandatory_fields or pd.isna(value) or value == '' or value is None:
-                        continue
-                    if param == 'audit_items':
-                        processed_value = process_audit_items(value)
-                        if processed_value:
-                            command += f" {param}={processed_value}"
-                    elif param == 'user_group_type' or param == 'user_name' or param == 'group_name' or param == 'domain_type':
-                        command += f" {param}={value}"
-                    elif param == 'space_hard_quota' or param == 'space_soft_quota' or param == 'file_hard_quota' or param == 'file_soft_quota':
-                        command += f" {param}={value}"
-                    else:
-                        command += f" {param}={value}"
-
-                commands.append(command)
-            except KeyError as e:
-                print(f"Warning: Missing column '{e}' in row {index + 1} of sheet '{command_type}'. Skipping.")
-                continue
-            except Exception as e:
-                print(f"Error processing row {index + 1}: {e}")
-                continue
-
-    return commands
+        print(f"Commands written to: {output_file_path}")
+        return output_file_path
 
 def main(resource_type, device_type):
-    base_path = sys._MEIPASS if getattr(sys, 'frozen', False) else os.path.abspath(".")
-    excel_file_path = os.path.join(base_path, 'Documents', f'{device_type}_{resource_type}_commands.xlsx')
-    results_dir = os.path.join(base_path, 'Results')
-
-    if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
-
-    config = load_config(device_type)
-    resource_columns = config.get(resource_type, {})
-
-    if not os.path.exists(excel_file_path):
-        print(f"Error: Excel file '{excel_file_path}' does not exist.")
-        sys.exit(1)
-
-    all_commands = []
-    for command_type, fields in resource_columns.items():
-        data_frame = read_file(excel_file_path, sheet_name=command_type)
-        if data_frame is None:
-            continue
-
-        mandatory_fields = [field["name"] for field in fields.get("mandatory", [])]
-        commands = generate_commands(data_frame, resource_type, command_type, mandatory_fields)
-        all_commands.extend(commands)
-        all_commands.append('')
-
-    output_file_path = os.path.join(results_dir, f'{device_type.lower()}_{resource_type.lower()}_commands.txt')
-    with open(output_file_path, 'w') as f:
-        for command in all_commands:
-            f.write(command + '\n')
-
-    print(f"Commands written to: {output_file_path}")
-    return output_file_path  # Return the path to the output file
+    generator = CommandGenerator()
+    return generator.main(resource_type, device_type)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

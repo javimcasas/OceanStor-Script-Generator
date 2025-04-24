@@ -10,7 +10,8 @@
                     },
                     {
                         "name": "local_path",
-                        "field_type": "text"
+                        "field_type": "text",
+                        "transform": "prefix_slash"
                     }
                 ],
                 "optional": [
@@ -27,23 +28,30 @@
                         "default": "yes"
                     },
                     {
-                        "name": "file_system_id",
-                        "field_type": "integer"
-                    },
-                    {
                         "name": "offline_file_mode",
                         "field_type": "select",
                         "allowed_values": ["none", "manual", "documents", "programs"],
-                        "default": "manual"
-                    },
-                    {
-                        "name": "smb2_ca_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"],
-                        "default": "yes"
+                        "default": "none"
                     },
                     {
                         "name": "ip_control_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "no"
+                    },
+                    {
+                        "name": "audit_items",
+                        "field_type": "list",
+                        "separator": ","
+                    },
+                    {
+                        "name": "share_type",
+                        "field_type": "select",
+                        "allowed_values": ["normal", "homedir"],
+                        "default": "normal"
+                    },
+                    {
+                        "name": "file_filter_enable",
                         "field_type": "select",
                         "allowed_values": ["yes", "no"],
                         "default": "no"
@@ -55,26 +63,10 @@
                         "default": "no"
                     },
                     {
-                        "name": "audit_items",
-                        "field_type": "text"
-                    },
-                    {
-                        "name": "file_filter_enable",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"],
-                        "default": "no"
-                    },
-                    {
                         "name": "apply_default_acl",
                         "field_type": "select",
                         "allowed_values": ["yes", "no"],
                         "default": "yes"
-                    },
-                    {
-                        "name": "share_type",
-                        "field_type": "select",
-                        "allowed_values": ["normal", "homedir"],
-                        "default": "normal"
                     },
                     {
                         "name": "show_previous_versions_enabled",
@@ -95,21 +87,7 @@
                         "default": "yes"
                     },
                     {
-                        "name": "account_name",
-                        "field_type": "text"
-                    },
-                    {
-                        "name": "sync_write_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"],
-                        "default": "no"
-                    },
-                    {
-                        "name": "dir_umask",
-                        "field_type": "text"
-                    },
-                    {
-                        "name": "file_umask",
+                        "name": "file_system_name",
                         "field_type": "text"
                     },
                     {
@@ -119,19 +97,11 @@
                         "default": "yes"
                     },
                     {
-                        "name": "smb3_encryption_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"],
-                        "default": "no"
+                        "name": "dir_umask",
+                        "field_type": "text"
                     },
                     {
-                        "name": "unencrypted_access",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"],
-                        "default": "yes"
-                    },
-                    {
-                        "name": "description",
+                        "name": "file_umask",
                         "field_type": "text"
                     }
                 ]
@@ -141,77 +111,94 @@
                 "mandatory": [
                     {
                         "name": "share_id",
-                        "field_type": "integer"
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "share_name",
+                        "field_type": "text"
                     }
                 ],
                 "optional": [
                     {
                         "name": "oplock_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
                         "name": "notify_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
                         "name": "offline_file_mode",
                         "field_type": "select",
-                        "allowed_values": ["none", "manual", "documents", "programs"]
-                    },
-                    {
-                        "name": "smb2_ca_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["none", "manual", "documents", "programs"],
+                        "default": "none"
                     },
                     {
                         "name": "ip_control_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
-                    },
-                    {
-                        "name": "abe_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "no"
                     },
                     {
                         "name": "audit_items",
-                        "field_type": "text"
+                        "field_type": "list",
+                        "separator": ","
+                    },
+                    {
+                        "name": "share_type",
+                        "field_type": "select",
+                        "allowed_values": ["normal", "homedir"],
+                        "default": "normal"
                     },
                     {
                         "name": "file_filter_enable",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "no"
+                    },
+                    {
+                        "name": "abe_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "no"
                     },
                     {
                         "name": "apply_default_acl",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
                         "name": "show_previous_versions_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
                         "name": "show_snapshot_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
                         "name": "browse_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
-                        "name": "account_name",
+                        "name": "file_system_name",
                         "field_type": "text"
                     },
                     {
-                        "name": "sync_write_enabled",
+                        "name": "lease_enabled",
                         "field_type": "select",
-                        "allowed_values": ["yes", "no"]
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
                     },
                     {
                         "name": "dir_umask",
@@ -220,66 +207,44 @@
                     {
                         "name": "file_umask",
                         "field_type": "text"
-                    },
-                    {
-                        "name": "lease_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"]
-                    },
-                    {
-                        "name": "smb3_encryption_enabled",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"]
-                    },
-                    {
-                        "name": "unencrypted_access",
-                        "field_type": "select",
-                        "allowed_values": ["yes", "no"]
-                    },
-                    {
-                        "name": "description",
-                        "field_type": "text"
                     }
                 ]
-            }
-        }
-    },
-    "Namespace": {
-        "operations": {
-            "Create": {
-                "cli_prefix": "create namespace general",
-                "mandatory": [
+            },
+            "Show": {
+                "cli_prefix": "show share cifs",
+                "mandatory": [],
+                "optional": [
                     {
-                        "name": "name",
+                        "name": "share_id",
                         "field_type": "text"
                     },
                     {
-                        "name": "storage_pool_id",
-                        "field_type": "integer"
+                        "name": "file_system_id",
+                        "field_type": "text"
                     },
                     {
-                        "name": "account_id",
-                        "field_type": "integer"
-                    }
-                ],
-                "optional": [
-                    {
-                        "name": "forbidden_dpc",
+                        "name": "share_type",
                         "field_type": "select",
-                        "allowed_values": ["true", "false"],
-                        "default": "true"
+                        "allowed_values": ["normal", "homedir"],
+                        "default": "normal"
                     },
                     {
-                        "name": "case_sensitive",
-                        "field_type": "select",
-                        "allowed_values": ["true", "false"],
-                        "default": "false"
+                        "name": "share_name",
+                        "field_type": "text"
                     },
                     {
-                        "name": "acl_policy_type",
-                        "field_type": "select",
-                        "allowed_values": ["mixed", "OtherType"],
-                        "default": "Mixed"
+                        "name": "file_system_name",
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "share_id_list",
+                        "field_type": "list",
+                        "separator": ","
+                    },
+                    {
+                        "name": "share_name_list",
+                        "field_type": "list",
+                        "separator": ","
                     }
                 ]
             }
