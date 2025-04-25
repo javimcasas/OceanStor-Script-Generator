@@ -10,11 +10,14 @@ def apply_style(root):
     
     # Configure combobox style
     style.configure("TCombobox",
-                   fieldbackground="#FFFFFF",
-                   background="#FFFFFF",
-                   foreground="#333333",
-                   padding=5,
-                   bordercolor="#CCCCCC")
+                    font=("Arial", 11),
+                    padding=8,
+                    relief="flat",
+                    anchor="center",
+                    #foreground="#333333",  # Dark grey text
+                    background="#F5F5F5",  # Light grey background
+                    highlightthickness=0,
+                    arrowsize=15)
     
     style.map("TCombobox",
              fieldbackground=[("readonly", "#FFFFFF")],

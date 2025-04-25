@@ -3,7 +3,7 @@ from tkinter import messagebox, filedialog
 from utils import load_config, encapsulate_results, open_directory
 from file_operations import create_excel_for_resource
 from import_operations import process_imported_data
-from gui_helpers import toggle_loading
+from gui_functions import toggle_loading
 
 def open_excel_with_sheet(excel_path, sheet_name):
     try:

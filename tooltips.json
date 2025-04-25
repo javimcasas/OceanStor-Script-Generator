@@ -1,0 +1,17 @@
+{
+    "buttons": {
+        "Create": "Create a new resource with specified parameters",
+        "Change": "Modify an existing resource",
+        "Show": "Display information about resources",
+        "FS Quota": "Configure the FileSystem Quota",
+        "Dtree Quota": "Configure the Dtree Quota",
+        "Open Excel": "Open the Excel template for the selected command",
+        "Clear Excel": "Clear the Excel template",
+        "Import Excel": "Generate commands based on the InfoGrab excel output file",
+        "Run Script": "Generate CLI commands from the Excel data"
+    },
+    "selectors": {
+        "device": "Select between OceanStor Dorado or Pacific systems",
+        "script": "Select the type of resource to configure"
+    }
+}

@@ -4,6 +4,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from PIL import Image, ImageTk
+from tooltip_manager import ToolTipManager
+tooltip_manager = ToolTipManager()
 
 # Loading indicator state
 _loading_window = None
@@ -21,6 +23,7 @@ def create_script_menu(root, script_var, config):
         justify="center",
     )
     script_menu.pack(pady=10)
+    tooltip_manager.add_tooltip(script_menu, "script", "selectors")
     return script_menu
 
 def create_command_buttons(root, script_var, command_var, config):
@@ -43,6 +46,7 @@ def create_command_buttons(root, script_var, command_var, config):
                     **button_style(operation == command_var.get())
                 )
                 setup_button_hover(btn, "#E0E0E0", "#F0F0F0")
+                tooltip_manager.add_tooltip(btn, operation)
 
     # Initialize buttons
     if config:
@@ -135,6 +139,7 @@ def create_colored_button(parent, text, color, command, **pack_args):
     )
     setup_button_hover(button, darker_color(color, 0.9), color)
     button.pack(**pack_args) if pack_args else button.pack(side="left", padx=5)
+    tooltip_manager.add_tooltip(button, text)
     return button
 
 def darker_color(hex_color, factor=0.8):
@@ -180,7 +185,7 @@ def add_help_button(root):
 def add_version_label(root):
     """Add version label at bottom right"""
     version_label = tk.Label(root, 
-                             text="Version 0.2.0", 
+                             text="Version 0.2.2", 
                              bg="#FFFFFF", 
                              font=("Helvetica", 9), 
                              fg="#808080")  # Set the text color to greyish

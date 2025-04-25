@@ -4,9 +4,9 @@ dist/
 Documents/
 Imported_Results/
 Logs/
+Test_Results/
 output/
 Results/
-tests/
 dummy_path.xlsx
 Script Generator.spec
 script_selector.spec

@@ -6,6 +6,8 @@ from excel_operations import open_excel, clear_excel, import_excel
 from gui_helpers import apply_style, create_buttons_and_dropdown, toggle_loading
 from command_generator import main as generate_commands
 from utils import load_config
+from tooltip_manager import ToolTipManager
+tooltip_manager = ToolTipManager()
 
 def run_script(script_type, command_type, device_type):
     try:
@@ -81,6 +83,7 @@ def main():
         justify="center",
     )
     device_menu.pack(pady=10)
+    tooltip_manager.add_tooltip(device_menu, "device", "selectors")
 
     # Load initial config
     def load_current_config():
