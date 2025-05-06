@@ -185,7 +185,7 @@ def add_help_button(root):
 def add_version_label(root):
     """Add version label at bottom right"""
     version_label = tk.Label(root, 
-                             text="Version 0.2.2", 
+                             text="Version 0.3.0", 
                              bg="#FFFFFF", 
                              font=("Helvetica", 9), 
                              fg="#808080")  # Set the text color to greyish

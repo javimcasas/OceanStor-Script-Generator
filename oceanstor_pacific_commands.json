@@ -284,5 +284,140 @@
                 ]
             }
         }
+    },
+    "Quota": {
+        "operations": {
+            "Namespace": {
+                "cli_prefix": "create quota namespace",
+                "mandatory": [
+                    {
+                        "name": "namespace_id",
+                        "field_type": "integer",
+                        "min_value": 1,
+                        "max_value": 4294967295
+                    },
+                    {
+                        "name": "quota_type",
+                        "field_type": "select",
+                        "allowed_values": ["directory", "user", "group"],
+                        "default": "directory"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "user_name",
+                        "field_type": "text",
+                        "max_length": 63
+                    },
+                    {
+                        "name": "group_name",
+                        "field_type": "text",
+                        "max_length": 63
+                    },
+                    {
+                        "name": "user_group_type",
+                        "field_type": "select",
+                        "allowed_values": ["local_user", "local_user_group", "domain_user", "domain_user_group", "local_windows_user"]
+                    },
+                    {
+                        "name": "domain_type",
+                        "field_type": "select",
+                        "allowed_values": ["ad", "ldap", "nis"]
+                    },
+                    {
+                        "name": "directory_quota_target",
+                        "field_type": "select",
+                        "allowed_values": ["0", "1"],
+                        "default": "0",
+                        "applicable_when": {"quota_type": "directory"}
+                    },
+                    {
+                        "name": "path",
+                        "field_type": "text",
+                        "max_length": 4095
+                    },
+                    {
+                        "name": "space_hard_quota",
+                        "field_type": "size",
+                        "max_value": "256PB"
+                    },
+                    {
+                        "name": "space_soft_quota",
+                        "field_type": "size",
+                        "max_value": "256PB"
+                    },
+                    {
+                        "name": "space_advisory_quota",
+                        "field_type": "size",
+                        "max_value": "256PB"
+                    },
+                    {
+                        "name": "file_hard_quota",
+                        "field_type": "integer",
+                        "description": "File quantity hard quota in thousands (K)",
+                        "max_value": 100000000
+                    },
+                    {
+                        "name": "file_soft_quota",
+                        "field_type": "integer",
+                        "description": "File quantity soft quota in thousands (K)",
+                        "max_value": 100000000
+                    },
+                    {
+                        "name": "file_advisory_quota",
+                        "field_type": "integer",
+                        "description": "File quantity advisory quota in thousands (K)",
+                        "max_value": 100000000
+                    },
+                    {
+                        "name": "soft_grace_time",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 4294967294,
+                        "description": "Grace period in days (0 means unlimited)"
+                    },
+                    {
+                        "name": "snap_space_enable",
+                        "field_type": "select",
+                        "allowed_values": ["true", "false"],
+                        "default": "false",
+                        "applicable_when": {"quota_type": "directory"}
+                    },
+                    {
+                        "name": "snap_modify_write_enable",
+                        "field_type": "select",
+                        "allowed_values": ["true", "false"],
+                        "default": "false",
+                        "applicable_when": {"snap_space_enable": "true"}
+                    }
+                ],
+                "mutually_exclusive_groups": [
+                    {
+                        "name": "space_quotas",
+                        "parameters": ["space_hard_quota", "space_soft_quota", "space_advisory_quota"],
+                        "description": "Only one space quota type can be specified"
+                    },
+                    {
+                        "name": "file_quotas",
+                        "parameters": ["file_hard_quota", "file_soft_quota", "file_advisory_quota"],
+                        "description": "Only one file quota type can be specified"
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "parameter": "soft_grace_time",
+                        "requires_any": ["space_soft_quota", "file_soft_quota"]
+                    },
+                    {
+                        "parameter": "user_name",
+                        "requires": {"quota_type": "user"}
+                    },
+                    {
+                        "parameter": "group_name",
+                        "requires": {"quota_type": "group"}
+                    }
+                ]
+            }
+        }
     }
 }

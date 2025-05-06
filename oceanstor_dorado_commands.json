@@ -672,6 +672,311 @@
                     }
                 ]
             },
+            "Change": {
+                "cli_prefix": "change file_system general",
+                "mandatory": [
+                    {
+                        "name": "file_system_id",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 65535,
+                        "description": "File system ID"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "file_system_name",
+                        "field_type": "text",
+                        "max_length": 255,
+                        "description": "Current name of the file system"
+                    },
+                    {
+                        "name": "name",
+                        "field_type": "text",
+                        "max_length": 255,
+                        "description": "New name of the file system"
+                    },
+                    {
+                        "name": "description",
+                        "field_type": "text",
+                        "max_length": 255,
+                        "description": "File system description"
+                    },
+                    {
+                        "name": "clear_description",
+                        "field_type": "select",
+                        "allowed_values": ["enable"],
+                        "description": "Clear the description"
+                    },
+                    {
+                        "name": "capacity",
+                        "field_type": "size",
+                        "min_value": "1GB",
+                        "max_value": "32768TB",
+                        "description": "File system capacity"
+                    },
+                    {
+                        "name": "owner_controller",
+                        "field_type": "text",
+                        "pattern": "^[0-3][A-D]$",
+                        "description": "Owning controller of the file system",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "io_priority",
+                        "field_type": "select",
+                        "allowed_values": ["Low", "Middle", "High"],
+                        "description": "I/O priority of the file system",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "block_size",
+                        "field_type": "select",
+                        "allowed_values": ["4 KB", "8 KB", "16 KB", "32 KB", "64 KB"],
+                        "default": "16 KB",
+                        "description": "Size of the file system block",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "capacity_threshold",
+                        "field_type": "integer",
+                        "min_value": 50,
+                        "max_value": 99,
+                        "description": "File system capacity alarm threshold"
+                    },
+                    {
+                        "name": "timing_snapshot_max_number",
+                        "field_type": "integer",
+                        "min_value": 1,
+                        "max_value": 2048,
+                        "description": "Maximum number of scheduled snapshots",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "snapshot_reserve",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 50,
+                        "description": "Percentage of reserved snapshots"
+                    },
+                    {
+                        "name": "split_speed",
+                        "field_type": "select",
+                        "allowed_values": ["Low", "Medium", "High", "Highest"],
+                        "default": "Medium",
+                        "description": "Split speed"
+                    },
+                    {
+                        "name": "space_self_adjusting_mode",
+                        "field_type": "select",
+                        "allowed_values": ["off", "grow", "grow_shrink"],
+                        "default": "off",
+                        "description": "Automatic capacity adjustment mode"
+                    },
+                    {
+                        "name": "autosize_enable",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "no",
+                        "description": "Switch of automatic capacity adjustment",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "auto_shrink_threshold_percent",
+                        "field_type": "integer",
+                        "min_value": 1,
+                        "max_value": 97,
+                        "default": 50,
+                        "description": "Percentage threshold that triggers automatic reduction"
+                    },
+                    {
+                        "name": "auto_grow_threshold_percent",
+                        "field_type": "integer",
+                        "min_value": 2,
+                        "max_value": 98,
+                        "default": 85,
+                        "description": "Percentage threshold that triggers automatic expansion"
+                    },
+                    {
+                        "name": "min_autosize",
+                        "field_type": "size",
+                        "min_value": "1GB",
+                        "max_value": "32768TB",
+                        "description": "Lower limit of automatic reduction"
+                    },
+                    {
+                        "name": "max_autosize",
+                        "field_type": "size",
+                        "min_value": "1GB",
+                        "max_value": "32768TB",
+                        "description": "Upper limit of automatic expansion"
+                    },
+                    {
+                        "name": "autosize_increment",
+                        "field_type": "size",
+                        "min_value": "64MB",
+                        "max_value": "100GB",
+                        "default": "1GB",
+                        "description": "Capacity change of a single automatic expansion",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "space_recycle_mode",
+                        "field_type": "select",
+                        "allowed_values": ["autosize_first", "delete_snap_first"],
+                        "default": "autosize_first",
+                        "description": "Capacity reclamation mode",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "alloc_type",
+                        "field_type": "select",
+                        "allowed_values": ["thick", "thin"],
+                        "description": "File system type",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "ssd_capacity_upper_limit_of_user_data",
+                        "field_type": "size",
+                        "min_value": "1GB",
+                        "description": "Upper limit of SSD capacity for storing user data",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "initial_distribute_policy",
+                        "field_type": "select",
+                        "allowed_values": ["automatic", "extreme_performance", "performance", "capacity"],
+                        "description": "Initial allocation policy for the file system",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "long_filename_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "description": "Whether to enable the long file name function",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "prefetch_policy",
+                        "field_type": "select",
+                        "allowed_values": ["none", "constant", "variable", "intelligent"],
+                        "default": "intelligent",
+                        "description": "Cache prefetch policy",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "prefetch_value",
+                        "field_type": "integer",
+                        "description": "Cache prefetch value (KB)",
+                        "conditions": [
+                            {
+                                "when": {"prefetch_policy": "constant"},
+                                "min_value": 0,
+                                "max_value": 1024
+                            },
+                            {
+                                "when": {"prefetch_policy": "intelligent"},
+                                "min_value": 1024,
+                                "max_value": 16384,
+                                "default": 4096
+                            }
+                        ],
+                        "unsupported": true
+                    },
+                    {
+                        "name": "prefetch_multiple",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 1024,
+                        "description": "Cache prefetch multiple",
+                        "unsupported": true
+                    },
+                    {
+                        "name": "security_style",
+                        "field_type": "select",
+                        "allowed_values": ["Native", "NTFS", "UNIX", "MIXED"],
+                        "description": "Security style supported by the file system"
+                    },
+                    {
+                        "name": "unix_permissions",
+                        "field_type": "text",
+                        "pattern": "^[0-7]{3}$",
+                        "description": "UNIX permissions of the file system root directory"
+                    },
+                    {
+                        "name": "fs_layer_distribution_algorithm",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "performance_mode",
+                            "capacity_balance_mode",
+                            "directory_balance_mode",
+                            "directory_shuffle_mode"
+                        ],
+                        "description": "Data distribution algorithm of the file system"
+                    },
+                    {
+                        "name": "audit_items",
+                        "field_type": "text",
+                        "description": "Audit items of the file system (comma-separated)"
+                    },
+                    {
+                        "name": "quota_switch",
+                        "field_type": "select",
+                        "allowed_values": ["Off", "On"],
+                        "description": "Quota switch of the file system"
+                    },
+                    {
+                        "name": "vstore_id",
+                        "field_type": "integer",
+                        "default": 0,
+                        "description": "Specified vStore ID"
+                    },
+                    {
+                        "name": "nas_locking_policy",
+                        "field_type": "select",
+                        "allowed_values": ["Mandatory", "Advisory"],
+                        "description": "NAS lock policy in NATIVE security style"
+                    },
+                    {
+                        "name": "auto_delete_snapshot_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "description": "Whether to enable automatic deletion of earliest snapshots"
+                    },
+                    {
+                        "name": "character_set",
+                        "field_type": "select",
+                        "allowed_values": ["UTF8", "UTF8-MB4"],
+                        "description": "Character set configuration of the file system"
+                    },
+                    {
+                        "name": "VAAI_switch",
+                        "field_type": "select",
+                        "allowed_values": ["On"],
+                        "description": "Whether to enable the VAAI function"
+                    }
+                ],
+                "mutually_exclusive": [
+                    {
+                        "parameters": ["file_system_id", "file_system_name"],
+                        "description": "Either file_system_id or file_system_name must be specified, but not both"
+                    },
+                    {
+                        "parameters": ["description", "clear_description"],
+                        "description": "Cannot specify both description and clear_description"
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "parameter": "prefetch_value",
+                        "requires": {"prefetch_policy": ["constant", "intelligent"]}
+                    },
+                    {
+                        "parameter": "prefetch_multiple",
+                        "requires": {"prefetch_policy": "variable"}
+                    }
+                ]
+            },
             "Show": {
                 "cli_prefix": "show file_system general",
                 "mandatory": [],
