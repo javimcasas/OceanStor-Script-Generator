@@ -185,7 +185,7 @@ def add_help_button(root):
 def add_version_label(root):
     """Add version label at bottom right"""
     version_label = tk.Label(root, 
-                             text="Version 0.3.0", 
+                             text="Version 0.3.1", 
                              bg="#FFFFFF", 
                              font=("Helvetica", 9), 
                              fg="#808080")  # Set the text color to greyish
@@ -225,42 +225,69 @@ def open_directory(directory):
         messagebox.showinfo("Info", f"Directory not found:\n{path}")
 
 def toggle_loading(root, state, message="Processing..."):
-    """Show/hide loading indicator"""
+    """Styled loading indicator with a unique style for the progress bar"""
     global _loading_window, _loading_label, _loading_progress
-    
-    if state:
+
+    if state:  # Show loading window
         if _loading_window is None:
+            # Create a borderless window
             _loading_window = tk.Toplevel(root)
+            _loading_window.title("Loading")
+
+            # Remove window decorations
             _loading_window.overrideredirect(True)
+
+            # Configure window size and background
             _loading_window.geometry("300x100")
-            _loading_window.transient(root)
-            _loading_window.grab_set()
-            
-            # Center window
-            root.update_idletasks()
-            x = root.winfo_x() + (root.winfo_width() - 300) // 2
-            y = root.winfo_y() + (root.winfo_height() - 100) // 2
+
+            # Center the window over the main application window
+            root.update_idletasks()  # Ensure root dimensions are current
+            root_x = root.winfo_x()
+            root_y = root.winfo_y()
+            root_width = root.winfo_width()
+            root_height = root.winfo_height()
+
+            x = root_x + (root_width - 300) // 2
+            y = root_y + (root_height - 100) // 2
             _loading_window.geometry(f"+{x}+{y}")
-            
-            # Content
+
+            # Add a border and change background color
+            _loading_window.configure(bg="#E1F0FF", highlightbackground="#3366CC", highlightthickness=2)
+
+            # Add message label with updated styling
             _loading_label = tk.Label(
                 _loading_window,
                 text=message,
                 font=("Arial", 10),
-                bg="#F0F0F0",
+                bg="#E1F0FF",
                 pady=10
             )
             _loading_label.pack(fill="x")
-            
+
+            # Create a unique style for the progress bar
+            style = ttk.Style()
+            style.theme_use('clam')  # Use the same theme as your main application
+            style.configure("Loading.Horizontal.TProgressbar", troughcolor="#E1F0FF", background="#3366CC")
+
             _loading_progress = ttk.Progressbar(
                 _loading_window,
                 mode="indeterminate",
-                length=250
+                length=250,
+                style="Loading.Horizontal.TProgressbar"
             )
             _loading_progress.pack(pady=5)
-            _loading_progress.start()
-    elif _loading_window:
+            _loading_progress.start(10)  # Start the progress bar animation
+
+            # Force immediate UI update
+            _loading_window.update_idletasks()
+        else:
+            # Update existing window if already open
+            _loading_label.config(text=message)
+            _loading_window.update_idletasks()
+
+    elif _loading_window:  # Hide loading window
         _loading_progress.stop()
-        _loading_window.grab_release()
         _loading_window.destroy()
         _loading_window = None
+        root.update_idletasks()  # Ensure UI updates
+

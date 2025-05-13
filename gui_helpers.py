@@ -46,13 +46,13 @@ def create_buttons_and_dropdown(root, open_excel, run_script, script_var, comman
     
     # Create action buttons
     action_frame = create_action_buttons(
-        root, 
-        open_excel, 
-        run_script, 
-        script_var, 
-        command_var, 
-        clear_excel, 
-        import_excel, 
+        root,
+        open_excel,
+        run_script,
+        script_var,
+        command_var,
+        clear_excel,
+        import_excel,
         device_var
     )
     

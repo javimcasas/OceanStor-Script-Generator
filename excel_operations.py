@@ -64,7 +64,7 @@ def clear_excel(script_type, device_var):
         messagebox.showerror("Error", f"An error occurred while deleting the Excel file: {e}")
         
 def import_excel(root):
-    """Handle Excel file import functionality."""
+    """Handle Excel file import with proper loading visibility."""
     try:
         # Open file browser for Excel files
         file_path = filedialog.askopenfilename(
@@ -75,33 +75,43 @@ def import_excel(root):
         if not file_path:  # User cancelled
             return
 
-        # Show loading indicator
+        # Show loading (force UI update)
         toggle_loading(root, True, "Processing Excel file...")
+        root.update()  # Force immediate UI refresh (stronger than update_idletasks)
         
         try:
-            # Process the file directly
+            # Process the file
             process_imported_data(file_path)
             
-            # Encapsulate results into zip file
+            # Update loading message (force UI update)
+            toggle_loading(root, True, "Creating zip archive...")
+            root.update()
+            
             zip_path = encapsulate_results()
             
-            # Prepare success message
+            # Success message
             success_msg = "Excel file processed successfully!"
             if zip_path:
-                success_msg += f"\n\nAll command files have been zipped as:\n{os.path.basename(zip_path)}"
+                success_msg += f"\n\nZipped as: {os.path.basename(zip_path)}"
             
-            # Ask user if they want to open the results folder
+            # Hide loading before showing message box
+            toggle_loading(root, False)
+            root.update()  # Ensure loading is gone before dialog
+            
+            # Ask to open folder
             response = messagebox.askyesno(
                 "Success", 
-                f"{success_msg}\n\nWould you like to open the Imported_Results folder?"
+                f"{success_msg}\n\nOpen Imported_Results folder?"
             )
             
             if response:
                 open_directory("Imported_Results")
-        finally:
-            # Always hide loading indicator when done
+                
+        except Exception as e:
             toggle_loading(root, False)
-
+            root.update()
+            raise  # Re-raise to outer handler
+            
     except Exception as e:
-        toggle_loading(root, False)  # Ensure loading is hidden on error
-        messagebox.showerror("Error", f"An error occurred while importing Excel: {str(e)}")
+        toggle_loading(root, False)
+        messagebox.showerror("Error", f"Error importing Excel: {str(e)}")
