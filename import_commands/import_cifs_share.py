@@ -17,9 +17,10 @@ def generate_cifs_share_command(row):
     if not name or not local_path:
         return None
 
+    # Preserve original case for name and local_path
     required_params = [
-        f"name={str(name).lower()}",
-        f"local_path={str(local_path).lower()}"
+        f"name={str(name)}",  # Removed .lower()
+        f"local_path={str(local_path)}"  # Removed .lower()
     ]
 
     param_mapping = {
@@ -52,7 +53,7 @@ def generate_cifs_share_command(row):
     for excel_col, param in param_mapping.items():
         if excel_col in row and pd.notna(row[excel_col]):
             value = row[excel_col]
-            value = str(value).lower()
+            value = str(value).lower()  # Keep lower() for other parameters
 
             if param in yes_no_params:
                 if value in ['enable', 'enabled', 'yes', 'true', '1']:

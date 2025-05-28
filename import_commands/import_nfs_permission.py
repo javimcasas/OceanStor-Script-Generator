@@ -5,7 +5,7 @@ def generate_nfs_permission_command(row):
     """Generate NFS share permission command using all available parameters from NFS_Share sheet."""
     access_name = row.get('Access Name')
     share_id = row.get('Share ID')
-    share_name = row.get('Alias')
+    share_name = row.get('Local Path')
     
     if not access_name or not share_id or not share_name:
         return None

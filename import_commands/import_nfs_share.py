@@ -7,6 +7,9 @@ def generate_nfs_share_command(row):
     local_path = row.get('Local Path')
     if not local_path:
         return None
+
+    if local_path.endswith('/'):
+        local_path = local_path[:-1]
     
     if local_path in processed_paths:
         return None
