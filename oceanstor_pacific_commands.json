@@ -244,6 +244,138 @@
             }
         }
     },
+    "NFS": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create share nfs",
+                "mandatory": [
+                    {
+                        "name": "share_path",
+                        "field_type": "text",
+                        "transform": "prefix_slash"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "file_system_id",
+                        "field_type": "integer"
+                    },
+                    {
+                        "name": "description",
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "account_name",
+                        "field_type": "text"
+                    }
+                ]
+            }
+        }
+    },
+    "NFS_Permission": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create share_permission nfs",
+                "mandatory": [
+                    {
+                        "name": "access_name",
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "share_id",
+                        "field_type": "integer"
+                    },
+                    {
+                        "name": "access_type",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "read_only",
+                            "read_write",
+                            "read_write_no_delete_rename",
+                            "no_permission"
+                        ]
+                    },
+                    {
+                        "name": "sync_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["sync", "async"]
+                    },
+                    {
+                        "name": "all_squash_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["all_squash", "no_all_squash"]
+                    },
+                    {
+                        "name": "root_squash_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["root_squash", "no_root_squash"]
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "secure_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["secure", "insecure"]
+                    },
+                    {
+                        "name": "security_type",
+                        "field_type": "select",
+                        "allowed_values": ["none", "unix", "none_unix"]
+                    },
+                    {
+                        "name": "krb5_access_type",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "read_only",
+                            "read_write",
+                            "read_write_no_delete_rename",
+                            "no_permission"
+                        ]
+                    },
+                    {
+                        "name": "krb5i_access_type",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "read_only",
+                            "read_write",
+                            "read_write_no_delete_rename",
+                            "no_permission"
+                        ]
+                    },
+                    {
+                        "name": "krb5p_access_type",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "read_only",
+                            "read_write",
+                            "read_write_no_delete_rename",
+                            "no_permission"
+                        ]
+                    },
+                    {
+                        "name": "account_name",
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "ignoreMixedUnixSecOpt",
+                        "field_type": "select",
+                        "allowed_values": ["true", "false"]
+                    },
+                    {
+                        "name": "ntfs_unix_security_ops",
+                        "field_type": "select",
+                        "allowed_values": ["fail", "ignore"],
+                        "default": "fail"
+                    },
+                    {
+                        "name": "high_performance_write",
+                        "field_type": "select",
+                        "allowed_values": ["0", "1"]
+                    }
+                ]
+            }
+        }
+    },
     "Namespace": {
         "operations": {
             "Create": {

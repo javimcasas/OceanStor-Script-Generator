@@ -375,6 +375,105 @@
             }
         }
     },
+    "NFS_Permission": {
+    "operations": {
+        "Create": {
+        "cli_prefix": "create share_permission nfs",
+        "mandatory": [
+            {
+            "name": "access_name",
+            "field_type": "text"
+            },
+            {
+            "name": "all_squash_enabled",
+            "field_type": "select",
+            "allowed_values": ["yes", "no"]
+            },
+            {
+            "name": "root_squash_enabled",
+            "field_type": "select",
+            "allowed_values": ["yes", "no"]
+            }
+        ],
+        "optional": [
+            {
+            "name": "share_id",
+            "field_type": "text"
+            },
+            {
+            "name": "share_name",
+            "field_type": "text"
+            },
+            {
+            "name": "access_type",
+            "field_type": "select",
+            "allowed_values": ["read_only", "read_write", "no_permission"]
+            },
+            {
+            "name": "krb5_access_type",
+            "field_type": "select",
+            "allowed_values": ["read_only", "read_write", "no_permission"]
+            },
+            {
+            "name": "krb5i_access_type",
+            "field_type": "select",
+            "allowed_values": ["read_only", "read_write", "no_permission"]
+            },
+            {
+            "name": "krb5p_access_type",
+            "field_type": "select",
+            "allowed_values": ["read_only", "read_write", "no_permission"]
+            },
+            {
+            "name": "sync_enabled",
+            "field_type": "select",
+            "allowed_values": ["yes", "no"]
+            },
+            {
+            "name": "secure_enabled",
+            "field_type": "select",
+            "allowed_values": ["yes", "no"]
+            },
+            {
+            "name": "charset",
+            "field_type": "select",
+            "allowed_values": [
+                "UTF-8", "JIS", "S-JIS", "EUC-JP", "DE", "ZH", "GBK", "EUC-TW", "BIG5",
+                "PT", "FR", "IT", "ES", "KO", "AR", "CS", "DA", "FI", "HE", "HR", "HU",
+                "NO", "NL", "PL", "RO", "RU", "SK", "SL", "SV", "TR", "EN-US", "EUC-KR", "default"
+            ],
+            "default": "UTF-8"
+            },
+            {
+            "name": "anonymous_user_id",
+            "field_type": "number"
+            },
+            {
+            "name": "v4_acl_preserve",
+            "field_type": "select",
+            "allowed_values": ["enable", "disable"],
+            "default": "enable"
+            },
+            {
+            "name": "ntfs_unix_security_ops",
+            "field_type": "select",
+            "allowed_values": ["fail", "ignore"],
+            "default": "fail"
+            },
+            {
+            "name": "security_type",
+            "field_type": "select",
+            "allowed_values": ["auth_none", "auth_unix", "auth_none_auth_unix"]
+            },
+            {
+            "name": "chown_mode",
+            "field_type": "select",
+            "allowed_values": ["restricted", "unrestricted"]
+            }
+        ]
+        }
+    }
+    },
     "FileSystem": {
         "operations": {
             "Create": {
