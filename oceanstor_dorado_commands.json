@@ -1,4 +1,567 @@
 {
+    "LUN": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create lun",
+                "mandatory": [
+                    {
+                        "name": "name",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 255,
+                        "pattern": "[A-Za-z0-9._-]+"
+                    },
+                    {
+                        "name": "capacity",
+                        "field_type": "text",
+                        "pattern": "(\\d+(\\.\\d+)?(KB|MB|GB|TB|Blocks)|remain)",
+                        "description": "Capacity in KB, MB, GB, TB, Blocks, or 'remain' for all remaining space"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "number",
+                        "field_type": "integer",
+                        "min_value": 2,
+                        "max_value": 500,
+                        "default": 1,
+                        "description": "Number of LUNs to create in batch"
+                    },
+                    {
+                        "name": "copy_lun_id",
+                        "field_type": "text",
+                        "description": "ID of source LUN to copy attributes from"
+                    },
+                    {
+                        "name": "pool_id",
+                        "field_type": "text",
+                        "description": "ID of storage pool"
+                    },
+                    {
+                        "name": "pool_name",
+                        "field_type": "text",
+                        "description": "Name of storage pool"
+                    },
+                    {
+                        "name": "storage_pool_id",
+                        "field_type": "text",
+                        "description": "ID of storage pool"
+                    },
+                    {
+                        "name": "storage_pool_name",
+                        "field_type": "text",
+                        "description": "Name of storage pool"
+                    },
+                    {
+                        "name": "remote_lun_wwn_list",
+                        "field_type": "list",
+                        "separator": ",",
+                        "description": "WWN of remote LUN"
+                    },
+                    {
+                        "name": "override_capacity",
+                        "field_type": "text",
+                        "pattern": "\\d+(\\.\\d+)?(KB|MB|GB|TB)",
+                        "description": "New capacity when copying from source LUN"
+                    },
+                    {
+                        "name": "override_pool_id",
+                        "field_type": "text",
+                        "description": "New pool ID when copying from source LUN"
+                    },
+                    {
+                        "name": "lun_type",
+                        "field_type": "select",
+                        "allowed_values": ["thin"],
+                        "description": "LUN type"
+                    },
+                    {
+                        "name": "vvol_type",
+                        "field_type": "select",
+                        "allowed_values": ["PE_LUN"],
+                        "description": "VVol type"
+                    },
+                    {
+                        "name": "write_policy",
+                        "field_type": "select",
+                        "allowed_values": ["write_through", "write_back"],
+                        "default": "write_back"
+                    },
+                    {
+                        "name": "prefetch_policy",
+                        "field_type": "select",
+                        "allowed_values": ["none", "constant", "variable", "intelligent"],
+                        "default": "intelligent",
+                        "description": "Not supported in current version"
+                    },
+                    {
+                        "name": "prefetch_multiple",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 1024,
+                        "description": "Not supported in current version"
+                    },
+                    {
+                        "name": "prefetch_value",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 8192,
+                        "description": "Not supported in current version"
+                    },
+                    {
+                        "name": "io_priority",
+                        "field_type": "select",
+                        "allowed_values": ["Low", "Middle", "High"],
+                        "default": "Low"
+                    },
+                    {
+                        "name": "owner_controller",
+                        "field_type": "text",
+                        "pattern": "\\d+[A-D]",
+                        "description": "Not supported in current version"
+                    },
+                    {
+                        "name": "lun_id",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 65535
+                    },
+                    {
+                        "name": "lun_id_list",
+                        "field_type": "text",
+                        "pattern": "\\d+(,\\d+)*(-\\d+)*",
+                        "description": "LUN IDs separated by commas or ranges with hyphens"
+                    },
+                    {
+                        "name": "dif_switch",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "no"
+                    },
+                    {
+                        "name": "thresholds_switch",
+                        "field_type": "select",
+                        "allowed_values": ["off", "on"],
+                        "default": "off"
+                    },
+                    {
+                        "name": "thresholds_percent",
+                        "field_type": "integer",
+                        "min_value": 50,
+                        "max_value": 99,
+                        "default": 90
+                    },
+                    {
+                        "name": "compression_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
+                    },
+                    {
+                        "name": "dedup_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
+                    },
+                    {
+                        "name": "suffix_start_index",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 9998
+                    },
+                    {
+                        "name": "workload_type_id",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 2048
+                    },
+                    {
+                        "name": "description",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 255
+                    },
+                    {
+                        "name": "usage_type",
+                        "field_type": "select",
+                        "allowed_values": ["GLOBAL_REPO_LUN", "LOCAL_IMAGE_LUN", "CONTAINER_CONF_LUN"]
+                    },
+                    {
+                        "name": "device_controller",
+                        "field_type": "text",
+                        "pattern": "(all|\\d+[A-D])"
+                    },
+                    {
+                        "name": "service_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "yes"
+                    },
+                    {
+                        "name": "vstore_id",
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "inband_type",
+                        "field_type": "select",
+                        "allowed_values": ["IN_BAND_LUN"]
+                    }
+                ],
+                "mutually_exclusive_groups": [
+                    {
+                        "name": "id_selection",
+                        "fields": ["number", "lun_id", "lun_id_list"]
+                    },
+                    {
+                        "name": "pool_selection",
+                        "fields": ["pool_id", "pool_name", "storage_pool_id", "storage_pool_name"]
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "field": "prefetch_multiple",
+                        "requires": {"prefetch_policy": "variable"}
+                    },
+                    {
+                        "field": "prefetch_value",
+                        "requires": {"prefetch_policy": ["constant", "intelligent"]}
+                    },
+                    {
+                        "field": "thresholds_percent",
+                        "requires": {"thresholds_switch": "on"}
+                    }
+                ]
+            }
+        }
+    },
+    "LUN_Group": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create lun_group",
+                "mandatory": [
+                    {
+                        "name": "name",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 255,
+                        "pattern": "[A-Za-z0-9._-]+"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "lun_group_id",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 16383
+                    },
+                    {
+                        "name": "lun_id_list",
+                        "field_type": "text",
+                        "pattern": "\\d+(,\\d+)*(-\\d+)*",
+                        "description": "LUN/snapshot IDs separated by commas or ranges with hyphens"
+                    },
+                    {
+                        "name": "lun_name_list",
+                        "field_type": "text",
+                        "description": "LUN/snapshot names separated by commas"
+                    }
+                ],
+                "mutually_exclusive_groups": [
+                    {
+                        "name": "member_specification",
+                        "fields": ["lun_id_list", "lun_name_list"]
+                    }
+                ]
+            }
+        }
+    },
+    "Host": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create host",
+                "mandatory": [
+                    {
+                        "name": "name",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 255,
+                        "pattern": "[A-Za-z0-9._-]+"
+                    },
+                    {
+                        "name": "operating_system",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "Linux",
+                            "Windows",
+                            "Solaris",
+                            "HP-UX",
+                            "AIX",
+                            "XenServer",
+                            "Mac_OS",
+                            "VIS6000",
+                            "VMware_ESX",
+                            "Windows_Server_2012",
+                            "Oracle_VM",
+                            "OpenVMS",
+                            "Oracle_VM_Server_for_x86",
+                            "Oracle_VM_Server_for_SPARC"
+                        ]
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "ip",
+                        "field_type": "text",
+                        "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$",
+                        "description": "IP address of the host"
+                    },
+                    {
+                        "name": "network_name",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31
+                    },
+                    {
+                        "name": "location",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31
+                    },
+                    {
+                        "name": "model",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31
+                    },
+                    {
+                        "name": "host_id",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 24575
+                    },
+                    {
+                        "name": "access_mode",
+                        "field_type": "select",
+                        "allowed_values": ["balanced", "asymmetric"]
+                    },
+                    {
+                        "name": "hyper_metro_path_optimized",
+                        "field_type": "select",
+                        "allowed_values": ["no", "yes"]
+                    },
+                    {
+                        "name": "noRedundancyCheck",
+                        "field_type": "select",
+                        "allowed_values": ["no", "yes"]
+                    }
+                ]
+            }
+        }
+    },
+    "Host_Group": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create host_group",
+                "mandatory": [
+                    {
+                        "name": "name",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 255,
+                        "pattern": "[A-Za-z0-9._-]+"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "host_group_id",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 8191
+                    },
+                    {
+                        "name": "host_id_list",
+                        "field_type": "text",
+                        "pattern": "\\d+(,\\d+)*(-\\d+)*",
+                        "description": "Host IDs separated by commas or ranges with hyphens"
+                    },
+                    {
+                        "name": "host_name_list",
+                        "field_type": "text",
+                        "description": "Host names separated by commas"
+                    }
+                ],
+                "mutually_exclusive_groups": [
+                    {
+                        "name": "member_specification",
+                        "fields": ["host_id_list", "host_name_list"]
+                    }
+                ]
+            }
+        }
+    },
+    "Initiator_FC": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create initiator fc",
+                "mandatory": [
+                    {
+                        "name": "wwn",
+                        "field_type": "text",
+                        "pattern": "^(?![0fF]+$)[A-Fa-f0-9]{16}$",
+                        "description": "16-character hexadecimal WWN, cannot be all 0s or Fs"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "alias",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31,
+                        "pattern": "[A-Za-z0-9._-]+"
+                    },
+                    {
+                        "name": "host_id",
+                        "field_type": "integer",
+                        "description": "ID of host to associate with initiator"
+                    },
+                    {
+                        "name": "multipath_type",
+                        "field_type": "select",
+                        "allowed_values": ["default", "third-party"],
+                        "default": "default"
+                    },
+                    {
+                        "name": "failover_mode",
+                        "field_type": "select",
+                        "allowed_values": ["old_alua", "common_alua", "no_alua", "special_mode"],
+                        "default": "common_alua"
+                    },
+                    {
+                        "name": "special_mode_type",
+                        "field_type": "select",
+                        "allowed_values": ["mode0", "mode1", "mode2", "mode3"],
+                        "description": "Not supported in current version"
+                    },
+                    {
+                        "name": "path_type",
+                        "field_type": "select",
+                        "allowed_values": ["non-optimized", "optimized"],
+                        "default": "optimized"
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "field": "special_mode_type",
+                        "requires": {"failover_mode": "special_mode"}
+                    },
+                    {
+                        "field": "failover_mode",
+                        "requires": {"multipath_type": "third-party"}
+                    }
+                ]
+            }
+        }
+    },
+    "Initiator_iSCSI": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create initiator iscsi",
+                "mandatory": [
+                    {
+                        "name": "iscsi_iqn_name",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 223,
+                        "pattern": "^[A-Za-z0-9][\\x20-\\x7E]*$",
+                        "description": "IQN name starting with letter or digit (ASCII 32-127)"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "alias",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31,
+                        "pattern": "[A-Za-z0-9._-]+"
+                    },
+                    {
+                        "name": "chap_enabled",
+                        "field_type": "select",
+                        "allowed_values": ["yes", "no"],
+                        "default": "no"
+                    },
+                    {
+                        "name": "chap_user",
+                        "field_type": "text",
+                        "min_length": 4,
+                        "max_length": 223,
+                        "pattern": "^[A-Za-z0-9][\\x20-\\x7E]*$"
+                    },
+                    {
+                        "name": "discovery_chap_type",
+                        "field_type": "select",
+                        "allowed_values": ["none", "single", "double"]
+                    },
+                    {
+                        "name": "normal_chap_type",
+                        "field_type": "select",
+                        "allowed_values": ["none", "single", "double"]
+                    },
+                    {
+                        "name": "host_id",
+                        "field_type": "integer",
+                        "description": "ID of host to associate with initiator"
+                    },
+                    {
+                        "name": "multipath_type",
+                        "field_type": "select",
+                        "allowed_values": ["default", "third-party"],
+                        "default": "default"
+                    },
+                    {
+                        "name": "failover_mode",
+                        "field_type": "select",
+                        "allowed_values": ["old_alua", "common_alua", "no_alua", "special_mode"],
+                        "default": "common_alua"
+                    },
+                    {
+                        "name": "special_mode_type",
+                        "field_type": "select",
+                        "allowed_values": ["mode0", "mode1", "mode2", "mode3"],
+                        "description": "Not supported in current version"
+                    },
+                    {
+                        "name": "path_type",
+                        "field_type": "select",
+                        "allowed_values": ["non-optimized", "optimized"],
+                        "default": "optimized"
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "field": "chap_user",
+                        "requires": {"chap_enabled": "yes"}
+                    },
+                    {
+                        "field": "discovery_chap_type",
+                        "requires": {"chap_enabled": "yes"}
+                    },
+                    {
+                        "field": "normal_chap_type",
+                        "requires": {"chap_enabled": "yes"}
+                    },
+                    {
+                        "field": "special_mode_type",
+                        "requires": {"failover_mode": "special_mode"}
+                    },
+                    {
+                        "field": "failover_mode",
+                        "requires": {"multipath_type": "third-party"}
+                    }
+                ]
+            }
+        }
+    },
     "CIFS": {
         "operations": {
             "Create": {
