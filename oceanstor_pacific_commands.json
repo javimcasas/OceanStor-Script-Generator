@@ -244,6 +244,50 @@
             }
         }
     },
+    "CIFS_Permission": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create share_permission cifs",
+                "mandatory": [
+                    {
+                        "name": "share_id",
+                        "field_type": "integer"
+                    },
+                    {
+                        "name": "permission_type",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "read_only",
+                            "read_write",
+                            "no_access",
+                            "all_control",
+                            "read_write_no_delete_rename"
+                        ]
+                    },
+                    {
+                        "name": "name",
+                        "field_type": "text"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "domain_type",
+                        "field_type": "select",
+                        "allowed_values": [
+                            "Local",
+                            "AD",
+                            "LDAP",
+                            "NIS"
+                        ]
+                    },
+                    {
+                        "name": "account_name",
+                        "field_type": "text"
+                    }
+                ]
+            }
+        }
+    },
     "NFS": {
         "operations": {
             "Create": {
@@ -371,6 +415,21 @@
                         "name": "high_performance_write",
                         "field_type": "select",
                         "allowed_values": ["0", "1"]
+                    }
+                ]
+            },
+            "Delete": {
+                "cli_prefix": "delete share_permission nfs",
+                "mandatory": [
+                    {
+                        "name": "share_permission_id",
+                        "field_type": "integer"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "account_name",
+                        "field_type": "text"
                     }
                 ]
             }
