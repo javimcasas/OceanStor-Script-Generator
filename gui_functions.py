@@ -4,284 +4,86 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from PIL import Image, ImageTk
-from tooltip_manager import ToolTipManager
-tooltip_manager = ToolTipManager()
 
 # Loading indicator state
 _loading_window = None
 _loading_label = None
 _loading_progress = None
 
-def create_script_menu(root, script_var, config):
-    """Create and return the script selection dropdown"""
-    script_menu = ttk.Combobox(
-        root,
-        textvariable=script_var,
-        values=list(config.keys()),
-        state="readonly",
-        font=("Arial", 11),
-        justify="center",
-    )
-    script_menu.pack(pady=10)
-    tooltip_manager.add_tooltip(script_menu, "script", "selectors")
-    return script_menu
-
-def create_command_buttons(root, script_var, command_var, config):
-    """Create command operation buttons frame and return it with update function"""
-    command_frame = tk.Frame(root, bg="#FFFFFF")
-    command_frame.pack(pady=(10, 15))
-
-    def update_command_buttons(config):
-        """Update command buttons based on current script selection"""
-        for widget in command_frame.winfo_children():
-            widget.destroy()
-        
-        current_script = script_var.get()
-        if current_script in config:
-            for operation in config[current_script]['operations'].keys():
-                btn = create_command_button(operation, command_frame)
-                btn.pack(side="left", padx=5)
-                btn.config(
-                    command=lambda op=operation: select_command(op, command_var, command_frame),
-                    **button_style(operation == command_var.get())
-                )
-                setup_button_hover(btn, "#E0E0E0", "#F0F0F0")
-                tooltip_manager.add_tooltip(btn, operation)
-
-    # Initialize buttons
-    if config:
-        script_var.set(list(config.keys())[0])
-        update_command_buttons(config)
-
-    return command_frame, update_command_buttons
-
-def create_command_button(text, command_frame):
-    """Create a standard command button"""
-    return tk.Button(
-        command_frame,
-        text=text,
-        width=12,
-        height=1,
-        bg="#F0F0F0",
-        fg="#333333",
-        activebackground="#E0E0E0",
-        relief="flat",
-        bd=1,
-        padx=5,
-        pady=3,
-        font=("Arial", 10)
-    )
-
-def button_style(active):
-    """Return style properties based on active state"""
-    return {
-        'bg': "#E0E0E0" if active else "#F0F0F0",
-        'relief': "sunken" if active else "flat"
-    }
-
-def select_command(command, command_var, command_frame):
-    """Handle command button selection"""
-    command_var.set(command)
-    for btn in command_frame.winfo_children():
-        btn.config(**button_style(btn.cget("text") == command))
-
-def setup_button_hover(button, hover_color, default_color):
-    """Configure hover effects for buttons"""
-    button.bind("<Enter>", lambda e, b=button: b.config(bg=hover_color))
-    button.bind("<Leave>", lambda e, b=button: b.config(bg=default_color))
-
-def create_action_buttons(root, open_excel, run_script, script_var, command_var, clear_excel, import_excel, device_var):
-    """Create and return action buttons frame"""
-    action_frame = tk.Frame(root, bg="#FFFFFF")
-    action_frame.pack(pady=(15, 10))
-
-    # Create action buttons
-    open_button = create_colored_button(
-        action_frame,
-        "Open Excel", "#4CAF50",
-        lambda: open_excel(script_var.get(), command_var.get(), device_var.get())
-    )
-    clear_button = create_colored_button(
-        action_frame,
-        "Clear Excel", "#F44336",
-        lambda: clear_excel(script_var.get(), device_var.get())
-    )
-    import_button = create_colored_button(
-        action_frame,
-        "Import Excel", "#FF9800",
-        lambda: import_excel(root)
-    )
-    run_button = create_colored_button(
-        root,
-        "Run Script", "#2196F3",
-        lambda: run_script(script_var.get(), command_var.get(), device_var.get()),
-        pady=(15, 10)
-    )
-
-    return action_frame, open_button, run_button, clear_button
-
-def create_colored_button(parent, text, color, command, **pack_args):
-    """Create a colored action button with hover effects"""
-    button = tk.Button(
-        parent,
-        text=text,
-        width=12,
-        height=1,
-        bg=color,
-        fg="white",
-        activebackground=darker_color(color),
-        relief="flat",
-        bd=1,
-        padx=5,
-        pady=5,
-        font=("Arial", 10, "bold"),
-        command=command
-    )
-    setup_button_hover(button, darker_color(color, 0.9), color)
-    button.pack(**pack_args) if pack_args else button.pack(side="left", padx=5)
-    tooltip_manager.add_tooltip(button, text)
-    return button
-
-def darker_color(hex_color, factor=0.8):
-    """Return a darker version of the given hex color"""
-    rgb = tuple(int(hex_color[i:i+2], 16) for i in (1, 3, 5))
-    darker = tuple(max(0, int(c * factor)) for c in rgb)
-    return f"#{darker[0]:02x}{darker[1]:02x}{darker[2]:02x}"
-
-def add_help_button(root):
-    """Add help button to top-right corner"""
-    try:
-        icon_path = os.path.join("Icons", "help.ico")
-        help_icon = Image.open(icon_path).resize((20, 20), Image.LANCZOS)
-        help_photo = ImageTk.PhotoImage(help_icon)
-        
-        help_button = tk.Button(
-            root,
-            image=help_photo,
-            command=lambda: webbrowser.open("https://info.support.huawei.com/storageinfo/refer/#/home"),
-            bg="#FFFFFF",
-            activebackground="#FFFFFF",
-            relief="flat",
-            bd=0,
-            highlightthickness=0
-        )
-        help_button.image = help_photo
-        help_button.place(relx=0.98, rely=0.02, anchor="ne")
-        help_button.bind("<Enter>", lambda e: help_button.config(cursor="hand2"))
-    except Exception:
-        # Fallback text button
-        help_button = tk.Button(
-            root,
-            text="?",
-            command=lambda: webbrowser.open("https://info.support.huawei.com/storageinfo/refer/#/home"),
-            bg="#FFFFFF",
-            fg="#333333",
-            relief="flat",
-            bd=0,
-            font=("Arial", 10, "bold")
-        )
-        help_button.place(relx=0.98, rely=0.02, anchor="ne")
-        
-def add_version_label(root):
-    """Add version label at bottom right"""
-    version_label = tk.Label(root, 
-                             text="Version 0.3.1", 
-                             bg="#FFFFFF", 
-                             font=("Helvetica", 9), 
-                             fg="#808080")  # Set the text color to greyish
-    version_label.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)  # Positioned at bottom-right corner with some margin
-    return version_label
-
-
-def add_directory_links(root):
-    """Add directory links at bottom"""
-    links_frame = tk.Frame(root, bg="#FFFFFF")
-    links_frame.pack(pady=(30, 15))
-
-    for text, directory in [("Open Results", "Results"), 
-                          ("Open Imported", "Imported_Results"),
-                          ("Open Logs", "Logs")]:
-        create_directory_link(links_frame, text, directory)
-
-def create_directory_link(parent, text, directory):
-    """Create a single directory link"""
-    link = tk.Label(
-        parent,
-        text=text,
-        font=("Arial", 9, "underline"),
-        fg="#666666",
-        cursor="hand2",
-        bg="#FFFFFF"
-    )
-    link.pack(side="left", padx=10)
-    link.bind("<Button-1>", lambda e: open_directory(directory))
-
-def open_directory(directory):
-    """Open the specified directory"""
-    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), directory)
-    if os.path.exists(path):
-        os.startfile(path)
-    else:
-        messagebox.showinfo("Info", f"Directory not found:\n{path}")
-
 def toggle_loading(root, state, message="Processing..."):
-    """Styled loading indicator with a unique style for the progress bar"""
+    """Modern styled loading indicator"""
     global _loading_window, _loading_label, _loading_progress
 
     if state:  # Show loading window
         if _loading_window is None:
-            # Create a borderless window
+            # Create a modern loading overlay
             _loading_window = tk.Toplevel(root)
-            _loading_window.title("Loading")
-
-            # Remove window decorations
-            _loading_window.overrideredirect(True)
-
-            # Configure window size and background
-            _loading_window.geometry("300x100")
-
-            # Center the window over the main application window
-            root.update_idletasks()  # Ensure root dimensions are current
+            _loading_window.title("Processing")
+            _loading_window.overrideredirect(True)  # Remove window decorations
+            
+            # Semi-transparent background
+            _loading_window.attributes('-alpha', 0.95)
+            
+            # Configure colors
+            bg_color = "#ffffff"
+            accent_color = "#2196f3"
+            
+            # Window size
+            width, height = 400, 150
+            
+            # Center the window
+            root.update_idletasks()
             root_x = root.winfo_x()
             root_y = root.winfo_y()
             root_width = root.winfo_width()
             root_height = root.winfo_height()
-
-            x = root_x + (root_width - 300) // 2
-            y = root_y + (root_height - 100) // 2
-            _loading_window.geometry(f"+{x}+{y}")
-
-            # Add a border and change background color
-            _loading_window.configure(bg="#E1F0FF", highlightbackground="#3366CC", highlightthickness=2)
-
-            # Add message label with updated styling
-            _loading_label = tk.Label(
-                _loading_window,
-                text=message,
-                font=("Arial", 10),
-                bg="#E1F0FF",
-                pady=10
-            )
-            _loading_label.pack(fill="x")
-
-            # Create a unique style for the progress bar
+            
+            x = root_x + (root_width - width) // 2
+            y = root_y + (root_height - height) // 2
+            
+            _loading_window.geometry(f"{width}x{height}+{x}+{y}")
+            _loading_window.configure(bg=bg_color, highlightbackground=accent_color, highlightthickness=2)
+            
+            # Create content
+            content_frame = tk.Frame(_loading_window, bg=bg_color)
+            content_frame.pack(expand=True, fill="both", padx=30, pady=30)
+            
+            # Title
+            title_label = tk.Label(content_frame, text="Processing", 
+                                  font=("Segoe UI", 14, "bold"),
+                                  bg=bg_color, fg=accent_color)
+            title_label.pack(pady=(0, 15))
+            
+            # Message
+            _loading_label = tk.Label(content_frame, text=message,
+                                     font=("Segoe UI", 10),
+                                     bg=bg_color, fg="#546e7a")
+            _loading_label.pack(pady=(0, 20))
+            
+            # Progress bar with custom style
             style = ttk.Style()
-            style.theme_use('clam')  # Use the same theme as your main application
-            style.configure("Loading.Horizontal.TProgressbar", troughcolor="#E1F0FF", background="#3366CC")
-
+            style.theme_use('clam')
+            style.configure("Modern.Horizontal.TProgressbar",
+                           troughcolor="#f0f0f0",
+                           background=accent_color,
+                           borderwidth=0,
+                           lightcolor=accent_color,
+                           darkcolor=accent_color)
+            
             _loading_progress = ttk.Progressbar(
-                _loading_window,
+                content_frame,
                 mode="indeterminate",
-                length=250,
-                style="Loading.Horizontal.TProgressbar"
+                length=300,
+                style="Modern.Horizontal.TProgressbar"
             )
-            _loading_progress.pack(pady=5)
-            _loading_progress.start(10)  # Start the progress bar animation
-
-            # Force immediate UI update
+            _loading_progress.pack()
+            _loading_progress.start(10)
+            
+            # Force immediate display
             _loading_window.update_idletasks()
+            
         else:
-            # Update existing window if already open
+            # Update existing window
             _loading_label.config(text=message)
             _loading_window.update_idletasks()
 
@@ -289,5 +91,90 @@ def toggle_loading(root, state, message="Processing..."):
         _loading_progress.stop()
         _loading_window.destroy()
         _loading_window = None
-        root.update_idletasks()  # Ensure UI updates
+        root.update_idletasks()
 
+def create_status_bar(parent):
+    """Create a modern status bar"""
+    status_bar = tk.Frame(parent, bg="#f8f9fa", height=30)
+    status_bar.pack(fill="x", side="bottom")
+    status_bar.pack_propagate(False)
+    
+    # Status message
+    status_label = tk.Label(status_bar, text="Ready", font=("Segoe UI", 9),
+                           bg="#f8f9fa", fg="#6c757d", anchor="w")
+    status_label.pack(side="left", padx=15)
+    
+    # Version info
+    version_label = tk.Label(status_bar, text="Version 0.3.1", font=("Segoe UI", 9),
+                            bg="#f8f9fa", fg="#adb5bd", anchor="e")
+    version_label.pack(side="right", padx=15)
+    
+    return status_label
+
+def create_quick_links(parent):
+    """Create quick access links"""
+    links_frame = tk.Frame(parent, bg=parent.cget('bg'))
+    links_frame.pack(pady=(20, 0))
+    
+    links = [
+        ("📁 Results", "Results"),
+        ("📁 Imported", "Imported_Results"),
+        ("📁 Logs", "Logs"),
+        ("❓ Help", "help")
+    ]
+    
+    def open_directory(directory):
+        """Open the specified directory"""
+        if directory == "help":
+            webbrowser.open("https://info.support.huawei.com/storageinfo/refer/#/home")
+        else:
+            path = os.path.join(os.path.dirname(os.path.abspath(__file__)), directory)
+            if os.path.exists(path):
+                os.startfile(path)
+            else:
+                messagebox.showinfo("Info", f"Directory not found:\n{path}")
+    
+    for icon_text, directory in links:
+        link = tk.Label(
+            links_frame,
+            text=icon_text,
+            font=("Segoe UI", 9),
+            fg="#2196f3",
+            bg=parent.cget('bg'),
+            cursor="hand2"
+        )
+        link.pack(side="left", padx=15)
+        
+        # Add hover effect
+        link.bind("<Enter>", lambda e, l=link: l.config(font=("Segoe UI", 9, "underline")))
+        link.bind("<Leave>", lambda e, l=link: l.config(font=("Segoe UI", 9)))
+        
+        # Bind click event
+        link.bind("<Button-1>", lambda e, d=directory: open_directory(d))
+
+def create_info_panel(parent):
+    """Create an information panel with tips"""
+    panel = tk.Frame(parent, bg="#e3f2fd", relief="flat", bd=1,
+                    highlightbackground="#bbdefb", highlightthickness=1)
+    
+    # Header
+    header = tk.Label(panel, text="💡 Quick Tips", font=("Segoe UI", 10, "bold"),
+                     bg="#e3f2fd", fg="#1565c0")
+    header.pack(anchor="w", padx=15, pady=(10, 5))
+    
+    # Tips
+    tips = [
+        "• Select a device type and resource to begin",
+        "• Click 'Open Excel' to create/edit templates",
+        "• Fill in Excel sheets and click 'Run Script'",
+        "• Use 'Import Excel' to process existing files"
+    ]
+    
+    for tip in tips:
+        tip_label = tk.Label(panel, text=tip, font=("Segoe UI", 9),
+                           bg="#e3f2fd", fg="#37474f", anchor="w")
+        tip_label.pack(anchor="w", padx=20, pady=2)
+    
+    panel.pack(fill="x", padx=20, pady=(20, 0))
+    
+    return panel
