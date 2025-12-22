@@ -562,6 +562,115 @@
             }
         }
     },
+    "Mapping": {
+        "operations": {
+            "Create": {
+                "cli_prefix": "create mapping general",
+                "mandatory": [
+                    {
+                        "name": "host_selection",
+                        "field_type": "choice_group",
+                        "choices": [
+                            {
+                                "name": "host_name",
+                                "field_type": "text"
+                            },
+                            {
+                                "name": "host_group_name", 
+                                "field_type": "text"
+                            },
+                            {
+                                "name": "host_id",
+                                "field_type": "integer"
+                            },
+                            {
+                                "name": "host_group_id",
+                                "field_type": "integer"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "lun_selection",
+                        "field_type": "choice_group",
+                        "choices": [
+                            {
+                                "name": "lun_name_list",
+                                "field_type": "text",
+                                "description": "One or more LUN names, separated by commas"
+                            },
+                            {
+                                "name": "lun_group_name",
+                                "field_type": "text"
+                            },
+                            {
+                                "name": "lun_id_list",
+                                "field_type": "text",
+                                "description": "One or more LUN IDs, separated by commas"
+                            },
+                            {
+                                "name": "lun_group_id",
+                                "field_type": "integer"
+                            }
+                        ]
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "port_group_name",
+                        "field_type": "text"
+                    },
+                    {
+                        "name": "port_group_id",
+                        "field_type": "integer"
+                    },
+                    {
+                        "name": "host_lun_id_list",
+                        "field_type": "text",
+                        "pattern": "^\\d+:\\d+(,\\d+:\\d+)*$",
+                        "description": "Format: LUN_ID:Host_LUN_ID (e.g., 1:10,2:11). LUN ID: 0-65535, Host LUN ID: 0-4095"
+                    },
+                    {
+                        "name": "host_lun_id_start",
+                        "field_type": "integer",
+                        "min_value": 0,
+                        "max_value": 4095,
+                        "description": "Start value for host LUN ID allocation"
+                    },
+                    {
+                        "name": "force",
+                        "field_type": "select",
+                        "allowed_values": ["true"],
+                        "description": "Skip HyperMetro host LUN ID consistency check"
+                    }
+                ],
+                "mutually_exclusive_groups": [
+                    {
+                        "name": "host_selector",
+                        "fields": ["host_name", "host_group_name", "host_id", "host_group_id"]
+                    },
+                    {
+                        "name": "lun_selector", 
+                        "fields": ["lun_name_list", "lun_group_name", "lun_id_list", "lun_group_id"]
+                    },
+                    {
+                        "name": "port_selector",
+                        "fields": ["port_group_name", "port_group_id"]
+                    },
+                    {
+                        "name": "host_lun_id_method",
+                        "fields": ["host_lun_id_list", "host_lun_id_start"]
+                    }
+                ],
+                "dependencies": [],
+                "validation_rules": {
+                    "host_lun_id_list": {
+                        "max_items": 1024,
+                        "item_format": "\\d+:\\d+"
+                    }
+                }
+            }
+        }
+    },
     "CIFS": {
         "operations": {
             "Create": {
