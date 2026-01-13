@@ -399,6 +399,131 @@
             }
         }
     },
+    "Host Initiator": {    
+        "operations": {
+            "Add": {
+                "cli_prefix": "add host initiator",
+                "mandatory": [
+                    {
+                        "name": "initiator_type",
+                        "field_type": "select",
+                        "allowed_values": ["fc", "iscsi"],
+                        "description": "Initiator protocol type"
+                    }
+                ],
+                "optional": [
+                    {
+                        "name": "host_id",
+                        "field_type": "text",
+                        "description": "ID of a host"
+                    },
+                    {
+                        "name": "host_name",
+                        "field_type": "text",
+                        "description": "Name of a host"
+                    },
+                    {
+                        "name": "wwn",
+                        "field_type": "text",
+                        "pattern": "(?i)[0-9a-f]{16}",
+                        "description": "WWN of a Fibre Channel initiator"
+                    },
+                    {
+                        "name": "wwn_list",
+                        "field_type": "list",
+                        "separator": ",",
+                        "pattern": "(?i)[0-9a-f]{16}",
+                        "description": "Comma-separated list of FC initiator WWNs"
+                    },
+                    {
+                        "name": "iscsi_iqn_name",
+                        "field_type": "text",
+                        "pattern": "iqn\\.[0-9]{4}-[0-9]{2}\\..+",
+                        "description": "iSCSI initiator IQN"
+                    },
+                    {
+                        "name": "initiator_alias",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31,
+                        "pattern": "[A-Za-z0-9._-]+",
+                        "description": "Alias of the initiator"
+                    },
+                    {
+                        "name": "initiator_alias_list",
+                        "field_type": "list",
+                        "separator": ",",
+                        "description": "Comma-separated list of initiator aliases"
+                    },
+                    {
+                        "name": "alias",
+                        "field_type": "text",
+                        "min_length": 1,
+                        "max_length": 31,
+                        "pattern": "[A-Za-z0-9._-]+",
+                        "description": "Alias displayed in the storage system"
+                    },
+                    {
+                        "name": "multipath_type",
+                        "field_type": "select",
+                        "allowed_values": ["default", "third-party"],
+                        "default": "default"
+                    },
+                    {
+                        "name": "failover_mode",
+                        "field_type": "select",
+                        "allowed_values": ["old_alua", "common_alua", "no_alua", "special_mode"],
+                        "default": "common_alua",
+                        "description": "Do not set unless required by host access mode"
+                    },
+                    {
+                        "name": "path_type",
+                        "field_type": "select",
+                        "allowed_values": ["optimized", "non-optimized"],
+                        "default": "optimized"
+                    },
+                    {
+                        "name": "special_mode_type",
+                        "field_type": "select",
+                        "allowed_values": ["mode0", "mode1", "mode2", "mode3"],
+                        "description": "Not supported in current version"
+                    }
+                ],
+                "mutually_exclusive_groups": [
+                    {
+                        "name": "host_selection",
+                        "fields": ["host_id", "host_name"]
+                    },
+                    {
+                        "name": "fc_identifier",
+                        "fields": ["wwn", "wwn_list", "initiator_alias", "initiator_alias_list"]
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "field": "wwn",
+                        "requires": { "initiator_type": "fc" }
+                    },
+                    {
+                        "field": "wwn_list",
+                        "requires": { "initiator_type": "fc" }
+                    },
+                    {
+                        "field": "initiator_alias",
+                        "requires": { "initiator_type": "fc" }
+                    },
+                    {
+                        "field": "initiator_alias_list",
+                        "requires": { "initiator_type": "fc" }
+                    },
+                    {
+                        "field": "iscsi_iqn_name",
+                        "requires": { "initiator_type": "iscsi" }
+                    }
+                ]
+            }
+        }
+    },
     "Initiator_FC": {
         "operations": {
             "Create": {
